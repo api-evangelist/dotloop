@@ -1,0 +1,507 @@
+{
+  "info": {
+    "name": "dotloop Public API v2",
+    "description": "OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company). Manage accounts, profiles, loops (transactions) and their details, folders, documents, participants, tasks, activities, contacts, loop templates, and webhook subscriptions. Base URL: https://api-gateway.dotloop.com/public/v2. All requests use a Bearer access token obtained via OAuth2 (authorize at https://auth.dotloop.com/oauth/authorize, token at https://auth.dotloop.com/oauth/token). Limit: 100 requests/minute per user.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{accessToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api-gateway.dotloop.com/public/v2", "type": "string" },
+    { "key": "accessToken", "value": "", "type": "string" },
+    { "key": "profileId", "value": "", "type": "string" },
+    { "key": "loopId", "value": "", "type": "string" },
+    { "key": "folderId", "value": "", "type": "string" },
+    { "key": "documentId", "value": "", "type": "string" },
+    { "key": "participantId", "value": "", "type": "string" },
+    { "key": "taskListId", "value": "", "type": "string" },
+    { "key": "contactId", "value": "", "type": "string" },
+    { "key": "subscriptionId", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "Get account",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/account", "host": ["{{baseUrl}}"], "path": ["account"] },
+            "description": "Retrieves the authenticated account details."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profiles",
+      "item": [
+        {
+          "name": "List profiles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile", "host": ["{{baseUrl}}"], "path": ["profile"] },
+            "description": "Lists all profiles the account can access."
+          }
+        },
+        {
+          "name": "Create profile",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"My Team\"\n}" },
+            "url": { "raw": "{{baseUrl}}/profile", "host": ["{{baseUrl}}"], "path": ["profile"] },
+            "description": "Creates a new profile."
+          }
+        },
+        {
+          "name": "Get profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}"] },
+            "description": "Retrieves a single profile by ID."
+          }
+        },
+        {
+          "name": "Update profile",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Renamed Team\"\n}" },
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}"] },
+            "description": "Updates an existing profile."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Loops",
+      "item": [
+        {
+          "name": "List loops",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/profile/{{profileId}}/loop?batch_number=1&batch_size=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["profile", "{{profileId}}", "loop"],
+              "query": [
+                { "key": "batch_number", "value": "1" },
+                { "key": "batch_size", "value": "20" }
+              ]
+            },
+            "description": "Lists loops within a profile with pagination."
+          }
+        },
+        {
+          "name": "Create loop",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"123 Main St - Purchase\",\n  \"transactionType\": \"PURCHASE_OFFER\",\n  \"status\": \"ACTIVE\"\n}" },
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop"] },
+            "description": "Creates a new loop within a profile."
+          }
+        },
+        {
+          "name": "Get loop",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}"] },
+            "description": "Retrieves a single loop by ID."
+          }
+        },
+        {
+          "name": "Update loop",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"ARCHIVED\"\n}" },
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}"] },
+            "description": "Updates an existing loop."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Loop Details",
+      "item": [
+        {
+          "name": "Get loop details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/detail", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "detail"] },
+            "description": "Retrieves the structured detail sections of a loop."
+          }
+        },
+        {
+          "name": "Update loop details",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"Property Address\": {\n    \"Street Number\": \"123\",\n    \"Street Name\": \"Main St\"\n  }\n}" },
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/detail", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "detail"] },
+            "description": "Updates the structured detail sections of a loop."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Loop It",
+      "item": [
+        {
+          "name": "Loop-It (create and populate a loop)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"123 Main St\",\n  \"transactionType\": \"PURCHASE_OFFER\",\n  \"status\": \"PRE_OFFER\",\n  \"streetName\": \"Main St\",\n  \"streetNumber\": \"123\"\n}" },
+            "url": {
+              "raw": "{{baseUrl}}/loop-it?profile_id={{profileId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["loop-it"],
+              "query": [{ "key": "profile_id", "value": "{{profileId}}" }]
+            },
+            "description": "Creates and populates a loop in a single call."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Folders",
+      "item": [
+        {
+          "name": "List folders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/folder", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "folder"] },
+            "description": "Lists the folders within a loop."
+          }
+        },
+        {
+          "name": "Create folder",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Contract Documents\"\n}" },
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/folder", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "folder"] },
+            "description": "Creates a new folder within a loop."
+          }
+        },
+        {
+          "name": "Get folder",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/folder/{{folderId}}", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "folder", "{{folderId}}"] },
+            "description": "Retrieves a single folder within a loop."
+          }
+        },
+        {
+          "name": "Update folder",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Signed Contracts\"\n}" },
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/folder/{{folderId}}", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "folder", "{{folderId}}"] },
+            "description": "Updates an existing folder within a loop."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Documents",
+      "item": [
+        {
+          "name": "List documents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/folder/{{folderId}}/document", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "folder", "{{folderId}}", "document"] },
+            "description": "Lists the documents within a loop folder."
+          }
+        },
+        {
+          "name": "Upload document",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": { "mode": "formdata", "formdata": [{ "key": "file", "type": "file", "src": [] }] },
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/folder/{{folderId}}/document", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "folder", "{{folderId}}", "document"] },
+            "description": "Uploads a new document into a loop folder using multipart form-data."
+          }
+        },
+        {
+          "name": "Get document",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/folder/{{folderId}}/document/{{documentId}}", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "folder", "{{folderId}}", "document", "{{documentId}}"] },
+            "description": "Retrieves a single document; can be downloaded as a PDF."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Participants",
+      "item": [
+        {
+          "name": "List participants",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/participant", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "participant"] },
+            "description": "Lists the participants on a loop."
+          }
+        },
+        {
+          "name": "Add participant",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"fullName\": \"Jane Buyer\",\n  \"email\": \"jane@example.com\",\n  \"role\": \"BUYER\"\n}" },
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/participant", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "participant"] },
+            "description": "Adds a participant to a loop."
+          }
+        },
+        {
+          "name": "Get participant",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/participant/{{participantId}}", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "participant", "{{participantId}}"] },
+            "description": "Retrieves a single participant on a loop."
+          }
+        },
+        {
+          "name": "Update participant",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"role\": \"BUYER_AGENT\"\n}" },
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/participant/{{participantId}}", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "participant", "{{participantId}}"] },
+            "description": "Updates a participant on a loop."
+          }
+        },
+        {
+          "name": "Remove participant",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/participant/{{participantId}}", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "participant", "{{participantId}}"] },
+            "description": "Removes a participant from a loop."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "List task lists",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/tasklist", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "tasklist"] },
+            "description": "Lists the task lists on a loop."
+          }
+        },
+        {
+          "name": "Get task list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/tasklist/{{taskListId}}", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "tasklist", "{{taskListId}}"] },
+            "description": "Retrieves a single task list on a loop."
+          }
+        },
+        {
+          "name": "List task items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/tasklist/{{taskListId}}/task", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "tasklist", "{{taskListId}}", "task"] },
+            "description": "Lists the task items within a task list."
+          }
+        },
+        {
+          "name": "Get task item",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/tasklist/{{taskListId}}/task/1", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "tasklist", "{{taskListId}}", "task", "1"] },
+            "description": "Retrieves a single task item within a task list."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Activities",
+      "item": [
+        {
+          "name": "List loop activities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop/{{loopId}}/activity", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop", "{{loopId}}", "activity"] },
+            "description": "Lists the read-only activity feed for a loop."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contacts",
+      "item": [
+        {
+          "name": "List contacts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/contact", "host": ["{{baseUrl}}"], "path": ["contact"] },
+            "description": "Lists the authenticated user's contacts."
+          }
+        },
+        {
+          "name": "Create contact",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Buyer\",\n  \"email\": \"jane@example.com\"\n}" },
+            "url": { "raw": "{{baseUrl}}/contact", "host": ["{{baseUrl}}"], "path": ["contact"] },
+            "description": "Creates a new contact."
+          }
+        },
+        {
+          "name": "Get contact",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/contact/{{contactId}}", "host": ["{{baseUrl}}"], "path": ["contact", "{{contactId}}"] },
+            "description": "Retrieves a single contact."
+          }
+        },
+        {
+          "name": "Update contact",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"jane.buyer@example.com\"\n}" },
+            "url": { "raw": "{{baseUrl}}/contact/{{contactId}}", "host": ["{{baseUrl}}"], "path": ["contact", "{{contactId}}"] },
+            "description": "Updates an existing contact."
+          }
+        },
+        {
+          "name": "Delete contact",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/contact/{{contactId}}", "host": ["{{baseUrl}}"], "path": ["contact", "{{contactId}}"] },
+            "description": "Deletes a contact."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Loop Templates",
+      "item": [
+        {
+          "name": "List loop templates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop-template", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop-template"] },
+            "description": "Lists the loop templates defined under a profile."
+          }
+        },
+        {
+          "name": "Get loop template",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/profile/{{profileId}}/loop-template/1", "host": ["{{baseUrl}}"], "path": ["profile", "{{profileId}}", "loop-template", "1"] },
+            "description": "Retrieves a single loop template under a profile."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "List subscriptions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/subscription", "host": ["{{baseUrl}}"], "path": ["subscription"] },
+            "description": "Lists the client application's webhook subscriptions."
+          }
+        },
+        {
+          "name": "Create subscription",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"url\": \"https://example.com/webhooks/dotloop\",\n  \"events\": [\"LOOP_CREATED\", \"LOOP_UPDATED\"]\n}" },
+            "url": { "raw": "{{baseUrl}}/subscription", "host": ["{{baseUrl}}"], "path": ["subscription"] },
+            "description": "Creates a webhook subscription to loop or contact events."
+          }
+        },
+        {
+          "name": "Get subscription",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/subscription/{{subscriptionId}}", "host": ["{{baseUrl}}"], "path": ["subscription", "{{subscriptionId}}"] },
+            "description": "Retrieves a single webhook subscription."
+          }
+        },
+        {
+          "name": "Update subscription",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"events\": [\"LOOP_UPDATED\"]\n}" },
+            "url": { "raw": "{{baseUrl}}/subscription/{{subscriptionId}}", "host": ["{{baseUrl}}"], "path": ["subscription", "{{subscriptionId}}"] },
+            "description": "Updates an existing webhook subscription."
+          }
+        },
+        {
+          "name": "Delete subscription",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/subscription/{{subscriptionId}}", "host": ["{{baseUrl}}"], "path": ["subscription", "{{subscriptionId}}"] },
+            "description": "Deletes a webhook subscription."
+          }
+        },
+        {
+          "name": "List events",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/subscription/{{subscriptionId}}/event", "host": ["{{baseUrl}}"], "path": ["subscription", "{{subscriptionId}}", "event"] },
+            "description": "Lists the events delivered for a subscription (retained 90 days)."
+          }
+        },
+        {
+          "name": "Get event",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/subscription/{{subscriptionId}}/event/1", "host": ["{{baseUrl}}"], "path": ["subscription", "{{subscriptionId}}", "event", "1"] },
+            "description": "Retrieves a single delivered webhook event."
+          }
+        }
+      ]
+    }
+  ]
+}

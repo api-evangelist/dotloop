@@ -1,0 +1,124 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: dotloop
+providerId: dotloop
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Real Estate
+- Transaction Management
+- Loops
+- Zillow Group
+- Plans
+description: >-
+  dotloop is sold as a per-seat SaaS subscription to real estate agents, teams,
+  and brokerages, billed monthly or annually (annual saves roughly 20%). The
+  Public API v2 itself is not a metered, separately priced product - API access
+  is granted to approved partners and integrators of the dotloop platform, and
+  consuming the API requires an underlying dotloop subscription. The plans below
+  are representative platform subscription tiers, not API price points; verify
+  current pricing on the dotloop plans page.
+notes: >-
+  Prices are representative figures gathered from public listings and change
+  frequently; confirm on https://www.dotloop.com/products/plans-pricing/.
+  Extras such as SMS delivery and premium integrations may carry additional
+  per-message or per-month fees.
+sources:
+- https://www.dotloop.com/products/plans-pricing/
+- https://dotloop.github.io/public-api/
+plans:
+- id: dotloop-agent
+  name: Agent / Premium
+  type: subscription
+  description: >-
+    Per-agent plan with unlimited loops, mobile apps, e-signatures, task
+    templates, and integrations. Billed monthly or annually.
+  entries:
+  - label: Agent Seat
+    name: agent_seat
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$31.99/mo (or ~$314/yr)
+    userMultiplied: true
+  elements:
+  - name: Unlimited Loops
+  - name: E-Signatures
+  - name: Mobile Apps
+  - name: Task Templates
+  - name: Integrations
+- id: dotloop-team
+  name: Team
+  type: subscription
+  description: >-
+    Adds transaction templates, compliance workflows, and reporting for small
+    teams.
+  entries:
+  - label: Team Plan
+    name: team
+    type: flat
+    metric: plan
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$149/mo
+    userMultiplied: false
+  elements:
+  - name: Transaction Templates
+  - name: Compliance Workflows
+  - name: Reporting
+- id: dotloop-enterprise
+  name: Business+ / Enterprise (Brokerage)
+  type: enterprise
+  description: >-
+    Brokerage and franchise plans with custom per-user pricing, admin controls,
+    compliance, reporting, and negotiated terms for larger seat counts. Includes
+    Public API v2 partner access for approved integrations.
+  entries:
+  - label: Per-User Enterprise Seat
+    name: enterprise_seat
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: custom (contact sales; often quoted per user)
+    userMultiplied: true
+  elements:
+  - name: Admin Controls
+  - name: Compliance and Audit
+  - name: Reporting
+  - name: Public API v2 Partner Access
+- id: dotloop-api
+  name: Public API v2 Access
+  type: partner
+  description: >-
+    Programmatic access to the dotloop Public API v2. Not sold as a standalone
+    metered product; access is provisioned to approved partners and integrators
+    on top of a dotloop platform subscription. No per-call API charge is
+    published.
+  entries:
+  - label: API Access
+    name: api_access
+    type: flat
+    metric: access
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included with partner/platform access (no published per-call fee)
+    userMultiplied: false
+  elements:
+  - name: OAuth2 App Registration
+  - name: Loops, Documents, Participants, Tasks APIs
+  - name: Webhooks
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

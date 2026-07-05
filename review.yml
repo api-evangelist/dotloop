@@ -1,0 +1,117 @@
+aid: dotloop
+name: dotloop
+review:
+  question: Does dotloop expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-04'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. dotloop's public surface is the Public
+    API v2, a request/response JSON REST API over HTTPS. Its only server-push
+    mechanism is outbound webhooks (dotloop sends an HTTPS POST to a
+    client-configured URL when subscribed events occur) - there is no
+    bidirectional or streaming WebSocket transport on dotloop's own API to
+    model. Webhooks are ordinary server-to-endpoint HTTP callbacks, not a
+    WebSocket, and are already represented as REST resources (subscriptions and
+    events) in the OpenAPI document.
+findings:
+  summary: |
+    dotloop does not publish a documented public WebSocket API. dotloop is a
+    real estate transaction management platform (a Zillow Group company). Its
+    documented public interface is the dotloop Public API v2, a JSON REST API
+    at https://api-gateway.dotloop.com/public/v2, authenticated with OAuth2
+    (authorize at https://auth.dotloop.com/oauth/authorize, token at
+    https://auth.dotloop.com/oauth/token) and called with a short-lived Bearer
+    access token. Every resource - account, profiles, loops, loop details,
+    Loop-It, folders, documents, participants, tasks, activities, contacts,
+    loop templates, and webhook subscriptions - is request/response REST.
+    Realtime notification is delivered by outbound webhooks (HTTPS POST to a
+    subscriber URL, 5-second delivery timeout, events retained 90 days), not a
+    WebSocket. No ws:// or wss:// endpoint is documented anywhere in the
+    dotloop developer guide as of the review date.
+  ownership: |
+    dotloop is owned by Zillow Group, which acquired the company in 2015. It is
+    marketed to real estate agents, teams, and brokerages as a per-seat SaaS
+    transaction management product.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api-gateway.dotloop.com/public/v2
+      documented: true
+      note: The entire dotloop Public API v2 is request/response JSON REST over HTTPS. Document upload uses multipart form-data.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Subscriptions cause dotloop to POST event payloads to a configured HTTPS URL (5s timeout, events stored 90 days). Server-to-endpoint HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the dotloop Public API v2 developer guide as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api-gateway.dotloop.com/public/v2/account
+    - GET    https://api-gateway.dotloop.com/public/v2/profile
+    - POST   https://api-gateway.dotloop.com/public/v2/profile
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}
+    - PATCH  https://api-gateway.dotloop.com/public/v2/profile/{profile_id}
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop
+    - POST   https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}
+    - PATCH  https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/detail
+    - PATCH  https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/detail
+    - POST   https://api-gateway.dotloop.com/public/v2/loop-it?profile_id={profile_id}
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/folder
+    - POST   https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/folder
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/folder/{folder_id}
+    - PATCH  https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/folder/{folder_id}
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/folder/{folder_id}/document
+    - POST   https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/folder/{folder_id}/document
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/folder/{folder_id}/document/{document_id}
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/participant
+    - POST   https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/participant
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/participant/{participant_id}
+    - PATCH  https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/participant/{participant_id}
+    - DELETE https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/participant/{participant_id}
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/tasklist
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/tasklist/{task_list_id}
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/tasklist/{task_list_id}/task
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/tasklist/{task_list_id}/task/{task_list_item_id}
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop/{loop_id}/activity
+    - GET    https://api-gateway.dotloop.com/public/v2/contact
+    - POST   https://api-gateway.dotloop.com/public/v2/contact
+    - GET    https://api-gateway.dotloop.com/public/v2/contact/{contact_id}
+    - PATCH  https://api-gateway.dotloop.com/public/v2/contact/{contact_id}
+    - DELETE https://api-gateway.dotloop.com/public/v2/contact/{contact_id}
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop-template
+    - GET    https://api-gateway.dotloop.com/public/v2/profile/{profile_id}/loop-template/{loop_template_id}
+    - GET    https://api-gateway.dotloop.com/public/v2/subscription
+    - POST   https://api-gateway.dotloop.com/public/v2/subscription
+    - GET    https://api-gateway.dotloop.com/public/v2/subscription/{subscription_id}
+    - PATCH  https://api-gateway.dotloop.com/public/v2/subscription/{subscription_id}
+    - DELETE https://api-gateway.dotloop.com/public/v2/subscription/{subscription_id}
+    - GET    https://api-gateway.dotloop.com/public/v2/subscription/{subscription_id}/event
+    - GET    https://api-gateway.dotloop.com/public/v2/subscription/{subscription_id}/event/{event_id}
+  endpointsModeled: []
+sources:
+  - url: https://dotloop.github.io/public-api/
+    type: Documentation
+    note: Official dotloop Public API v2 developer guide - OAuth2, base URL, all REST resources, webhooks, rate limits. No WebSocket mentioned.
+  - url: https://github.com/dotloop/public-api-integration-sample
+    type: SourceCode
+    note: Official dotloop integration sample repository.
+  - url: https://www.dotloop.com/products/plans-pricing/
+    type: Pricing
+    note: Per-seat subscription plans for agents, teams, and brokerages.
+  - url: https://zillowgroup.mediaroom.com/dotloop
+    type: Ownership
+    note: dotloop is part of the Zillow Group brand portfolio.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. dotloop's public API is
+    request/response REST (Public API v2), with realtime delivery handled by
+    outbound HTTPS webhooks that are already modeled as REST subscription and
+    event resources. No AsyncAPI document was created because there is no
+    server-push streaming transport on dotloop's own API to model.

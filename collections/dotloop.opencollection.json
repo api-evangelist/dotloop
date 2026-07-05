@@ -1,0 +1,533 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dotloop Public API v2",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{accessToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Account", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get account.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api-gateway.dotloop.com/public/v2/account" },
+          "docs": "Retrieves the authenticated account details."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Profiles", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List profiles.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api-gateway.dotloop.com/public/v2/profile" },
+          "docs": "Lists all profiles the account can access."
+        },
+        {
+          "info": { "name": "Create profile.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api-gateway.dotloop.com/public/v2/profile", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a new profile."
+        },
+        {
+          "info": { "name": "Get profile.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id",
+            "params": [{ "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." }]
+          },
+          "docs": "Retrieves a single profile by ID."
+        },
+        {
+          "info": { "name": "Update profile.", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id",
+            "params": [{ "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." }],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Updates an existing profile."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Loops", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List loops.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop",
+            "params": [{ "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." }]
+          },
+          "docs": "Lists loops within a profile with pagination, filtering, and sorting."
+        },
+        {
+          "info": { "name": "Create loop.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop",
+            "params": [{ "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." }],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Creates a new loop within a profile."
+        },
+        {
+          "info": { "name": "Get loop.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." }
+            ]
+          },
+          "docs": "Retrieves a single loop by ID."
+        },
+        {
+          "info": { "name": "Update loop.", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Updates an existing loop."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Loop Details", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get loop details.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/detail",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." }
+            ]
+          },
+          "docs": "Retrieves the structured detail sections of a loop."
+        },
+        {
+          "info": { "name": "Update loop details.", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/detail",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Updates the structured detail sections of a loop."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Loop It", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Loop-It (create and populate a loop).", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.dotloop.com/public/v2/loop-it",
+            "params": [{ "name": "profile_id", "value": "", "type": "query", "description": "The profile ID to create the loop under." }],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Creates and populates a loop in a single call."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Folders", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List folders.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/folder",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." }
+            ]
+          },
+          "docs": "Lists the folders within a loop."
+        },
+        {
+          "info": { "name": "Create folder.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/folder",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Creates a new folder within a loop."
+        },
+        {
+          "info": { "name": "Get folder.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/folder/:folder_id",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." },
+              { "name": "folder_id", "value": "", "type": "path", "description": "The folder ID." }
+            ]
+          },
+          "docs": "Retrieves a single folder within a loop."
+        },
+        {
+          "info": { "name": "Update folder.", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/folder/:folder_id",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." },
+              { "name": "folder_id", "value": "", "type": "path", "description": "The folder ID." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Updates an existing folder within a loop."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Documents", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List documents.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/folder/:folder_id/document",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." },
+              { "name": "folder_id", "value": "", "type": "path", "description": "The folder ID." }
+            ]
+          },
+          "docs": "Lists the documents within a loop folder."
+        },
+        {
+          "info": { "name": "Upload document.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/folder/:folder_id/document",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." },
+              { "name": "folder_id", "value": "", "type": "path", "description": "The folder ID." }
+            ],
+            "body": { "type": "multipart", "data": "file" }
+          },
+          "docs": "Uploads a new document into a loop folder using multipart form-data."
+        },
+        {
+          "info": { "name": "Get document.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/folder/:folder_id/document/:document_id",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." },
+              { "name": "folder_id", "value": "", "type": "path", "description": "The folder ID." },
+              { "name": "document_id", "value": "", "type": "path", "description": "The document ID." }
+            ]
+          },
+          "docs": "Retrieves a single document; can be downloaded as a PDF."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Participants", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List participants.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/participant",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." }
+            ]
+          },
+          "docs": "Lists the participants on a loop."
+        },
+        {
+          "info": { "name": "Add participant.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/participant",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Adds a participant to a loop."
+        },
+        {
+          "info": { "name": "Get participant.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/participant/:participant_id",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." },
+              { "name": "participant_id", "value": "", "type": "path", "description": "The participant ID." }
+            ]
+          },
+          "docs": "Retrieves a single participant on a loop."
+        },
+        {
+          "info": { "name": "Update participant.", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/participant/:participant_id",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." },
+              { "name": "participant_id", "value": "", "type": "path", "description": "The participant ID." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Updates a participant on a loop."
+        },
+        {
+          "info": { "name": "Remove participant.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/participant/:participant_id",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." },
+              { "name": "participant_id", "value": "", "type": "path", "description": "The participant ID." }
+            ]
+          },
+          "docs": "Removes a participant from a loop."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Tasks", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List task lists.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/tasklist",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." }
+            ]
+          },
+          "docs": "Lists the task lists on a loop."
+        },
+        {
+          "info": { "name": "Get task list.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/tasklist/:task_list_id",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." },
+              { "name": "task_list_id", "value": "", "type": "path", "description": "The task list ID." }
+            ]
+          },
+          "docs": "Retrieves a single task list on a loop."
+        },
+        {
+          "info": { "name": "List task items.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/tasklist/:task_list_id/task",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." },
+              { "name": "task_list_id", "value": "", "type": "path", "description": "The task list ID." }
+            ]
+          },
+          "docs": "Lists the task items within a task list."
+        },
+        {
+          "info": { "name": "Get task item.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/tasklist/:task_list_id/task/:task_list_item_id",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." },
+              { "name": "task_list_id", "value": "", "type": "path", "description": "The task list ID." },
+              { "name": "task_list_item_id", "value": "", "type": "path", "description": "The task item ID." }
+            ]
+          },
+          "docs": "Retrieves a single task item within a task list."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Activities", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List loop activities.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/activity",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_id", "value": "", "type": "path", "description": "The loop ID." }
+            ]
+          },
+          "docs": "Lists the read-only activity feed for a loop."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Contacts", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List contacts.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api-gateway.dotloop.com/public/v2/contact" },
+          "docs": "Lists the authenticated user's contacts."
+        },
+        {
+          "info": { "name": "Create contact.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api-gateway.dotloop.com/public/v2/contact", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a new contact."
+        },
+        {
+          "info": { "name": "Get contact.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/contact/:contact_id",
+            "params": [{ "name": "contact_id", "value": "", "type": "path", "description": "The contact ID." }]
+          },
+          "docs": "Retrieves a single contact."
+        },
+        {
+          "info": { "name": "Update contact.", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-gateway.dotloop.com/public/v2/contact/:contact_id",
+            "params": [{ "name": "contact_id", "value": "", "type": "path", "description": "The contact ID." }],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Updates an existing contact."
+        },
+        {
+          "info": { "name": "Delete contact.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-gateway.dotloop.com/public/v2/contact/:contact_id",
+            "params": [{ "name": "contact_id", "value": "", "type": "path", "description": "The contact ID." }]
+          },
+          "docs": "Deletes a contact."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Loop Templates", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List loop templates.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop-template",
+            "params": [{ "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." }]
+          },
+          "docs": "Lists the loop templates defined under a profile."
+        },
+        {
+          "info": { "name": "Get loop template.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop-template/:loop_template_id",
+            "params": [
+              { "name": "profile_id", "value": "", "type": "path", "description": "The profile ID." },
+              { "name": "loop_template_id", "value": "", "type": "path", "description": "The loop template ID." }
+            ]
+          },
+          "docs": "Retrieves a single loop template under a profile."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Webhooks", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List subscriptions.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api-gateway.dotloop.com/public/v2/subscription" },
+          "docs": "Lists the client application's webhook subscriptions."
+        },
+        {
+          "info": { "name": "Create subscription.", "type": "http" },
+          "http": { "method": "POST", "url": "https://api-gateway.dotloop.com/public/v2/subscription", "body": { "type": "json", "data": "{}" } },
+          "docs": "Creates a webhook subscription to loop or contact events."
+        },
+        {
+          "info": { "name": "Get subscription.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/subscription/:subscription_id",
+            "params": [{ "name": "subscription_id", "value": "", "type": "path", "description": "The subscription ID." }]
+          },
+          "docs": "Retrieves a single webhook subscription."
+        },
+        {
+          "info": { "name": "Update subscription.", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-gateway.dotloop.com/public/v2/subscription/:subscription_id",
+            "params": [{ "name": "subscription_id", "value": "", "type": "path", "description": "The subscription ID." }],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Updates an existing webhook subscription."
+        },
+        {
+          "info": { "name": "Delete subscription.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-gateway.dotloop.com/public/v2/subscription/:subscription_id",
+            "params": [{ "name": "subscription_id", "value": "", "type": "path", "description": "The subscription ID." }]
+          },
+          "docs": "Deletes a webhook subscription."
+        },
+        {
+          "info": { "name": "List events.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/subscription/:subscription_id/event",
+            "params": [{ "name": "subscription_id", "value": "", "type": "path", "description": "The subscription ID." }]
+          },
+          "docs": "Lists the events delivered for a subscription (retained 90 days)."
+        },
+        {
+          "info": { "name": "Get event.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/subscription/:subscription_id/event/:event_id",
+            "params": [
+              { "name": "subscription_id", "value": "", "type": "path", "description": "The subscription ID." },
+              { "name": "event_id", "value": "", "type": "path", "description": "The event ID." }
+            ]
+          },
+          "docs": "Retrieves a single delivered webhook event."
+        }
+      ]
+    }
+  ]
+}

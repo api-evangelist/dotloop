@@ -1,0 +1,53 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: dotloop
+providerId: dotloop
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: true
+tags:
+- Real Estate
+- Transaction Management
+- Zillow Group
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The dotloop Public API v2 enforces a documented per-user rate limit of 100
+  requests per minute for each client application acting on behalf of a user.
+  Exceeding the limit returns HTTP 429. Every response carries X-RateLimit-Limit,
+  X-RateLimit-Remaining, and X-RateLimit-Reset headers so clients can track and
+  back off against the window.
+notes: >-
+  Limit values are from the published dotloop developer guide. Webhook events
+  are retained for 90 days; webhook delivery has a 5-second timeout on the
+  receiving endpoint.
+sources:
+- https://dotloop.github.io/public-api/
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute
+  scope: user
+  metric: requests
+  limit: 100
+  timeFrame: minute
+  notes: Per client application, per user. Exceeding returns HTTP 429.
+headers:
+- name: X-RateLimit-Limit
+  description: The request ceiling for the window (100).
+- name: X-RateLimit-Remaining
+  description: Requests remaining in the current window.
+- name: X-RateLimit-Reset
+  description: Time until the window resets, in milliseconds.
+policies:
+- name: Per-User Throttling
+  description: Limits are applied per user that a client application acts on behalf of, not globally per app.
+- name: Backoff Strategy
+  description: Clients should watch X-RateLimit-Remaining / X-RateLimit-Reset and implement exponential backoff on 429 responses.
+- name: Event Retention
+  description: Webhook events are stored for 90 days and cannot be retrieved after that window.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,87 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: dotloop
+providerId: dotloop
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Real Estate
+- Transaction Management
+- Zillow Group
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of dotloop spend. dotloop is a per-seat SaaS subscription (a
+  Zillow Group company) billed monthly or annually per agent, team, or
+  brokerage seat. The Public API v2 is not separately metered - there is no
+  published per-call charge - so cost is driven by subscription seats plus any
+  extras (for example SMS delivery or premium integrations). Cost control is
+  therefore about seat allocation and utilization rather than API metering.
+notes: >-
+  dotloop does not publish usage-based API billing; the primary cost driver is
+  the number of subscription seats. Verify seat pricing and extras on the
+  dotloop plans page during reconciliation.
+sources:
+- https://www.dotloop.com/products/plans-pricing/
+- https://dotloop.github.io/public-api/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: dotloop
+serviceCategory: Business Applications
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly or Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+focusColumns:
+  ServiceName: dotloop
+  ServiceCategory: Business Applications
+  ProviderName: dotloop
+  PublisherName: Zillow Group
+  InvoiceIssuerName: dotloop
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription-Based
+meters:
+- name: subscription_seats
+  description: Number of active per-user subscription seats (agent / team / brokerage), the primary cost driver.
+  unit: seats
+  aggregation: sum
+  dimensions:
+  - account
+  - profile
+  - plan
+- name: sms_messages
+  description: Per-message SMS delivery charges when the SMS add-on is used.
+  unit: messages
+  aggregation: sum
+  dimensions:
+  - account
+- name: premium_integrations
+  description: Add-on fees for premium integrations (for example advanced Zapier access).
+  unit: add_ons
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track active seats per profile/brokerage against invoices; identify unused seats.
+- name: Allocation
+  description: Map seats to teams/offices and map API client applications to the profiles they serve.
+- name: Optimization
+  description: Right-size seat counts, prefer annual billing (~20% savings), and consolidate integrations to avoid duplicate add-on fees.
+- name: Accountability
+  description: Assign brokerage/team owners for seat budgets and review seat utilization periodically.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
