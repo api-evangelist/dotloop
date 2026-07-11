@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/dotloop-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.dotloop.com/oauth/authorize
+    tokenUrl: https://auth.dotloop.com/oauth/token
+    scopes: 8
+  description: OAuth2 authorization code flow. Access tokens are short-lived (typically 12 hours)
+    and passed as a Bearer token. Scopes include account:read, profile:read, profile:write,
+    loop:read, loop:write, contact:read, contact:write, and template:read.
+  sources:
+  - openapi/dotloop-openapi.yml

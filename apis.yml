@@ -261,6 +261,10 @@ apis:
     configured URL when events occur. Events are retained for 90 days and can be
     listed and retrieved for replay/reconciliation.
 common:
+- type: DomainSecurity
+  url: security/dotloop-domain-security.yml
+- type: Authentication
+  url: authentication/dotloop-authentication.yml
 - type: OAuthScopes
   url: scopes/dotloop-scopes.yml
 - type: GitHubOrganization
