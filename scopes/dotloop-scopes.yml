@@ -1,0 +1,62 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/dotloop-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/dotloop-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.dotloop.com/oauth/authorize
+    tokenUrl: https://auth.dotloop.com/oauth/token
+  description: OAuth2 authorization code flow. Access tokens are short-lived (typically 12 hours)
+    and passed as a Bearer token. Scopes include account:read, profile:read, profile:write,
+    loop:read, loop:write, contact:read, contact:write, and template:read.
+scopes:
+- scope: account:read
+  description: Read account details.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/dotloop-openapi.yml
+- scope: contact:read
+  description: Read contacts.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/dotloop-openapi.yml
+- scope: contact:write
+  description: Create, update, and delete contacts.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/dotloop-openapi.yml
+- scope: loop:read
+  description: Read loops, details, folders, documents, participants, tasks, and activities.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/dotloop-openapi.yml
+- scope: loop:write
+  description: Create and update loops and their contents.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/dotloop-openapi.yml
+- scope: profile:read
+  description: Read profiles.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/dotloop-openapi.yml
+- scope: profile:write
+  description: Create and update profiles.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/dotloop-openapi.yml
+- scope: template:read
+  description: Read loop templates.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/dotloop-openapi.yml
