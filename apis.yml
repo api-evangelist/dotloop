@@ -261,6 +261,8 @@ apis:
     configured URL when events occur. Events are retained for 90 days and can be
     listed and retrieved for replay/reconciliation.
 common:
+- type: AgenticAccess
+  url: agentic-access/dotloop-agentic-access.yml
 - type: DomainSecurity
   url: security/dotloop-domain-security.yml
 - type: Authentication
