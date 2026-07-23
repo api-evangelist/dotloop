@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: dotloop Public API v2 Account Webhooks API
+  description: The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company). It exposes the authenticated account, profiles, loops (transactions) and their structured details, folders, documents, participants, tasks, activities, contacts, loop templates, and webhook subscriptions, plus a Loop-It facade that creates and populates a loop in a single call. All requests and responses are `application/json` (document upload uses multipart form-data). Access is currently restricted to INDIVIDUAL profiles. Endpoints and paths in this document are grounded in the published developer guide at https://dotloop.github.io/public-api/.
+  termsOfService: https://www.dotloop.com/terms-of-service/
+  contact:
+    name: dotloop Developer Support
+    url: https://dotloop.github.io/public-api/
+  version: '2.0'
+servers:
+- url: https://api-gateway.dotloop.com/public/v2
+  description: dotloop Public API v2
+security:
+- oauth2: []
+tags:
+- name: Webhooks
+  description: Webhook subscriptions and delivered events.
+paths:
+  /subscription:
+    get:
+      operationId: listSubscriptions
+      tags:
+      - Webhooks
+      summary: List webhook subscriptions.
+      description: Lists the client application's webhook subscriptions (client-scoped).
+      responses:
+        '200':
+          description: A list of subscriptions.
+    post:
+      operationId: createSubscription
+      tags:
+      - Webhooks
+      summary: Create a webhook subscription.
+      description: Creates a webhook subscription to loop or contact events (scope contact:read or loop:read).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: The created subscription.
+  /subscription/{subscription_id}:
+    parameters:
+    - $ref: '#/components/parameters/SubscriptionId'
+    get:
+      operationId: getSubscription
+      tags:
+      - Webhooks
+      summary: Get a webhook subscription.
+      description: Retrieves a single webhook subscription (client-scoped).
+      responses:
+        '200':
+          description: The subscription.
+    patch:
+      operationId: updateSubscription
+      tags:
+      - Webhooks
+      summary: Update a webhook subscription.
+      description: Updates an existing webhook subscription (scope contact:read or loop:read).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The updated subscription.
+    delete:
+      operationId: deleteSubscription
+      tags:
+      - Webhooks
+      summary: Delete a webhook subscription.
+      description: Deletes a webhook subscription (client-scoped).
+      responses:
+        '204':
+          description: The subscription was deleted.
+  /subscription/{subscription_id}/event:
+    parameters:
+    - $ref: '#/components/parameters/SubscriptionId'
+    get:
+      operationId: listSubscriptionEvents
+      tags:
+      - Webhooks
+      summary: List webhook events.
+      description: Lists the events delivered for a subscription. Events are retained for 90 days (client-scoped).
+      responses:
+        '200':
+          description: A list of events.
+  /subscription/{subscription_id}/event/{event_id}:
+    parameters:
+    - $ref: '#/components/parameters/SubscriptionId'
+    - name: event_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      operationId: getSubscriptionEvent
+      tags:
+      - Webhooks
+      summary: Get a webhook event.
+      description: Retrieves a single delivered webhook event (client-scoped).
+      responses:
+        '200':
+          description: The event.
+components:
+  parameters:
+    SubscriptionId:
+      name: subscription_id
+      in: path
+      required: true
+      schema:
+        type: integer
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authorization code flow. Access tokens are short-lived (typically 12 hours) and passed as a Bearer token. Scopes include account:read, profile:read, profile:write, loop:read, loop:write, contact:read, contact:write, and template:read.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.dotloop.com/oauth/authorize
+          tokenUrl: https://auth.dotloop.com/oauth/token
+          scopes:
+            account:read: Read account details.
+            profile:read: Read profiles.
+            profile:write: Create and update profiles.
+            loop:read: Read loops, details, folders, documents, participants, tasks, and activities.
+            loop:write: Create and update loops and their contents.
+            contact:read: Read contacts.
+            contact:write: Create, update, and delete contacts.
+            template:read: Read loop templates.

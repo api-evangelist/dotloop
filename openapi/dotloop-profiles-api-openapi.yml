@@ -1,0 +1,95 @@
+openapi: 3.0.3
+info:
+  title: dotloop Public API v2 Account Profiles API
+  description: The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company). It exposes the authenticated account, profiles, loops (transactions) and their structured details, folders, documents, participants, tasks, activities, contacts, loop templates, and webhook subscriptions, plus a Loop-It facade that creates and populates a loop in a single call. All requests and responses are `application/json` (document upload uses multipart form-data). Access is currently restricted to INDIVIDUAL profiles. Endpoints and paths in this document are grounded in the published developer guide at https://dotloop.github.io/public-api/.
+  termsOfService: https://www.dotloop.com/terms-of-service/
+  contact:
+    name: dotloop Developer Support
+    url: https://dotloop.github.io/public-api/
+  version: '2.0'
+servers:
+- url: https://api-gateway.dotloop.com/public/v2
+  description: dotloop Public API v2
+security:
+- oauth2: []
+tags:
+- name: Profiles
+  description: Individual, team, and brokerage profiles that scope loops.
+paths:
+  /profile:
+    get:
+      operationId: listProfiles
+      tags:
+      - Profiles
+      summary: List profiles.
+      description: Lists all profiles the authenticated account can access (scope profile:read).
+      responses:
+        '200':
+          description: A list of profiles.
+    post:
+      operationId: createProfile
+      tags:
+      - Profiles
+      summary: Create a profile.
+      description: Creates a new profile (scope profile:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: The created profile.
+  /profile/{profile_id}:
+    parameters:
+    - $ref: '#/components/parameters/ProfileId'
+    get:
+      operationId: getProfile
+      tags:
+      - Profiles
+      summary: Get a profile.
+      description: Retrieves a single profile by ID (scope profile:read).
+      responses:
+        '200':
+          description: The profile.
+    patch:
+      operationId: updateProfile
+      tags:
+      - Profiles
+      summary: Update a profile.
+      description: Updates an existing profile (scope profile:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The updated profile.
+components:
+  parameters:
+    ProfileId:
+      name: profile_id
+      in: path
+      required: true
+      schema:
+        type: integer
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authorization code flow. Access tokens are short-lived (typically 12 hours) and passed as a Bearer token. Scopes include account:read, profile:read, profile:write, loop:read, loop:write, contact:read, contact:write, and template:read.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.dotloop.com/oauth/authorize
+          tokenUrl: https://auth.dotloop.com/oauth/token
+          scopes:
+            account:read: Read account details.
+            profile:read: Read profiles.
+            profile:write: Create and update profiles.
+            loop:read: Read loops, details, folders, documents, participants, tasks, and activities.
+            loop:write: Create and update loops and their contents.
+            contact:read: Read contacts.
+            contact:write: Create, update, and delete contacts.
+            template:read: Read loop templates.

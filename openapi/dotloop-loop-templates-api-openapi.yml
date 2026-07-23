@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  title: dotloop Public API v2 Account Loop Templates API
+  description: The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company). It exposes the authenticated account, profiles, loops (transactions) and their structured details, folders, documents, participants, tasks, activities, contacts, loop templates, and webhook subscriptions, plus a Loop-It facade that creates and populates a loop in a single call. All requests and responses are `application/json` (document upload uses multipart form-data). Access is currently restricted to INDIVIDUAL profiles. Endpoints and paths in this document are grounded in the published developer guide at https://dotloop.github.io/public-api/.
+  termsOfService: https://www.dotloop.com/terms-of-service/
+  contact:
+    name: dotloop Developer Support
+    url: https://dotloop.github.io/public-api/
+  version: '2.0'
+servers:
+- url: https://api-gateway.dotloop.com/public/v2
+  description: dotloop Public API v2
+security:
+- oauth2: []
+tags:
+- name: Loop Templates
+  description: Reusable transaction blueprints under a profile.
+paths:
+  /profile/{profile_id}/loop-template:
+    parameters:
+    - $ref: '#/components/parameters/ProfileId'
+    get:
+      operationId: listLoopTemplates
+      tags:
+      - Loop Templates
+      summary: List loop templates.
+      description: Lists the loop templates defined under a profile (scope template:read or loop:write).
+      responses:
+        '200':
+          description: A list of loop templates.
+  /profile/{profile_id}/loop-template/{loop_template_id}:
+    parameters:
+    - $ref: '#/components/parameters/ProfileId'
+    - name: loop_template_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      operationId: getLoopTemplate
+      tags:
+      - Loop Templates
+      summary: Get a loop template.
+      description: Retrieves a single loop template under a profile (scope template:read or loop:write).
+      responses:
+        '200':
+          description: The loop template.
+components:
+  parameters:
+    ProfileId:
+      name: profile_id
+      in: path
+      required: true
+      schema:
+        type: integer
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authorization code flow. Access tokens are short-lived (typically 12 hours) and passed as a Bearer token. Scopes include account:read, profile:read, profile:write, loop:read, loop:write, contact:read, contact:write, and template:read.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.dotloop.com/oauth/authorize
+          tokenUrl: https://auth.dotloop.com/oauth/token
+          scopes:
+            account:read: Read account details.
+            profile:read: Read profiles.
+            profile:write: Create and update profiles.
+            loop:read: Read loops, details, folders, documents, participants, tasks, and activities.
+            loop:write: Create and update loops and their contents.
+            contact:read: Read contacts.
+            contact:write: Create, update, and delete contacts.
+            template:read: Read loop templates.
