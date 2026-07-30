@@ -10,7 +10,20 @@ description: dotloop is a real estate transaction management platform (owned by 
   profiles, loops and loop details, folders, documents, participants, tasks,
   activities, contacts, loop templates, and webhook subscriptions, plus a Loop-It
   facade for one-call loop creation.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dotloop.png
 tags:
 - Real Estate
 - Transaction Management
@@ -24,242 +37,498 @@ specificationVersion: '0.19'
 apis:
 - aid: dotloop:dotloop-account-api
   name: dotloop Account API
+  description: The authenticated dotloop account.
+  humanURL: https://dotloop.github.io/public-api/
+  baseURL: https://api-gateway.dotloop.com/public/v2
   tags:
   - Account
-  - Identity
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://dotloop.github.io/public-api/
-  baseURL: https://api-gateway.dotloop.com/public/v2
   properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#account
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: Retrieve the authenticated dotloop account, including the individual's
-    name, email, and default profile. The account is the top-level identity a client
-    application acts on behalf of after OAuth2 authorization.
-- aid: dotloop:dotloop-profiles-api
-  name: dotloop Profiles API
-  tags:
-  - Profiles
-  - Organizations
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://dotloop.github.io/public-api/
-  baseURL: https://api-gateway.dotloop.com/public/v2
-  properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#profiles
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: List, retrieve, create, and update dotloop profiles - the individual,
-    team, or brokerage contexts under which loops are organized. Loops and templates
-    are always scoped to a profile.
-- aid: dotloop:dotloop-loops-api
-  name: dotloop Loops API
-  tags:
-  - Loops
-  - Transactions
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://dotloop.github.io/public-api/
-  baseURL: https://api-gateway.dotloop.com/public/v2
-  properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#loops
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: List, retrieve, create, and update loops (transactions) within a profile,
-    with pagination, filtering, and sorting. A loop represents a single real estate
-    transaction and its associated documents, participants, and tasks.
-- aid: dotloop:dotloop-loop-details-api
-  name: dotloop Loop Details API
-  tags:
-  - Loops
-  - Loop Details
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://dotloop.github.io/public-api/
-  baseURL: https://api-gateway.dotloop.com/public/v2
-  properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#loop-details
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: Get and update the structured detail fields of a loop - grouped sections
-    such as Property Address, Financials, Contract Dates, Listing Information, and
-    Offer details that make up a transaction record.
-- aid: dotloop:dotloop-loop-it-api
-  name: dotloop Loop-It API
-  tags:
-  - Loops
-  - Loop It
-  - Onboarding
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://dotloop.github.io/public-api/
-  baseURL: https://api-gateway.dotloop.com/public/v2
-  properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#loop-it
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: A facade endpoint that creates a new loop and populates it in a single
-    call - setting transaction type and status, participant contact data, property
-    and listing details, and optionally provisioning form templates via NRDS or MLS
-    Agent IDs.
-- aid: dotloop:dotloop-folders-api
-  name: dotloop Folders API
-  tags:
-  - Folders
-  - Documents
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://dotloop.github.io/public-api/
-  baseURL: https://api-gateway.dotloop.com/public/v2
-  properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#folders
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: List, retrieve, create, and update the folders inside a loop. Folders
-    organize the documents within a transaction (for example "Listing Documents" or
-    "Contract Documents").
-- aid: dotloop:dotloop-documents-api
-  name: dotloop Documents API
-  tags:
-  - Documents
-  - Files
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://dotloop.github.io/public-api/
-  baseURL: https://api-gateway.dotloop.com/public/v2
-  properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#documents
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: List and retrieve documents within a loop folder, and upload new documents
-    via multipart form-data. Individual documents can be downloaded as PDFs for the
-    transaction record.
-- aid: dotloop:dotloop-participants-api
-  name: dotloop Participants API
-  tags:
-  - Participants
-  - Contacts
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://dotloop.github.io/public-api/
-  baseURL: https://api-gateway.dotloop.com/public/v2
-  properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#participants
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: List, retrieve, add, update, and remove the participants on a loop -
-    the agents, buyers, sellers, and other parties to a transaction, each with a role
-    and contact details.
-- aid: dotloop:dotloop-tasks-api
-  name: dotloop Tasks API
-  tags:
-  - Tasks
-  - Task Lists
-  - Compliance
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://dotloop.github.io/public-api/
-  baseURL: https://api-gateway.dotloop.com/public/v2
-  properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#tasks
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: Read the task lists on a loop and the individual task items within each
-    list - the checklist of steps, due dates, and completion status that drive a
-    transaction's workflow and compliance.
+  - type: OpenAPI
+    url: openapi/dotloop-account-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
 - aid: dotloop:dotloop-activities-api
   name: dotloop Activities API
-  tags:
-  - Activity
-  - Audit
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: Read-only loop activity feed.
   humanURL: https://dotloop.github.io/public-api/
   baseURL: https://api-gateway.dotloop.com/public/v2
+  tags:
+  - Activities
   properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#activities
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: List the activity feed for a loop - a chronological, read-only audit
-    trail of the events and actions taken on the transaction by its participants.
+  - type: OpenAPI
+    url: openapi/dotloop-activities-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
 - aid: dotloop:dotloop-contacts-api
   name: dotloop Contacts API
+  description: The authenticated user's contacts (address book).
+  humanURL: https://dotloop.github.io/public-api/
+  baseURL: https://api-gateway.dotloop.com/public/v2
   tags:
   - Contacts
-  - Address Book
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/dotloop-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
+- aid: dotloop:dotloop-documents-api
+  name: dotloop Documents API
+  description: Documents within a loop folder.
   humanURL: https://dotloop.github.io/public-api/
   baseURL: https://api-gateway.dotloop.com/public/v2
+  tags:
+  - Documents
   properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#contacts
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: Full CRUD over the authenticated user's dotloop contacts (address book)
-    - list, retrieve, create, update, and delete the people an agent works with and
-    can add as loop participants.
+  - type: OpenAPI
+    url: openapi/dotloop-documents-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
+- aid: dotloop:dotloop-folders-api
+  name: dotloop Folders API
+  description: Folders that organize documents within a loop.
+  humanURL: https://dotloop.github.io/public-api/
+  baseURL: https://api-gateway.dotloop.com/public/v2
+  tags:
+  - Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/dotloop-folders-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
+- aid: dotloop:dotloop-loop-details-api
+  name: dotloop Loop Details API
+  description: Structured detail fields of a loop.
+  humanURL: https://dotloop.github.io/public-api/
+  baseURL: https://api-gateway.dotloop.com/public/v2
+  tags:
+  - Loop Details
+  properties:
+  - type: OpenAPI
+    url: openapi/dotloop-loop-details-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
+- aid: dotloop:dotloop-loop-it-api
+  name: dotloop Loop It API
+  description: Single-call loop creation facade.
+  humanURL: https://dotloop.github.io/public-api/
+  baseURL: https://api-gateway.dotloop.com/public/v2
+  tags:
+  - Loop It
+  properties:
+  - type: OpenAPI
+    url: openapi/dotloop-loop-it-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
 - aid: dotloop:dotloop-loop-templates-api
   name: dotloop Loop Templates API
-  tags:
-  - Templates
-  - Loops
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: Reusable transaction blueprints under a profile.
   humanURL: https://dotloop.github.io/public-api/
   baseURL: https://api-gateway.dotloop.com/public/v2
+  tags:
+  - Loop Templates
   properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#loop-templates
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: List and retrieve the loop templates defined under a profile - reusable
-    transaction blueprints that predefine folders, documents, and settings and can be
-    applied when creating a loop.
+  - type: OpenAPI
+    url: openapi/dotloop-loop-templates-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
+- aid: dotloop:dotloop-loops-api
+  name: dotloop Loops API
+  description: Loops (real estate transactions).
+  humanURL: https://dotloop.github.io/public-api/
+  baseURL: https://api-gateway.dotloop.com/public/v2
+  tags:
+  - Loops
+  properties:
+  - type: OpenAPI
+    url: openapi/dotloop-loops-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
+- aid: dotloop:dotloop-participants-api
+  name: dotloop Participants API
+  description: Parties to a loop.
+  humanURL: https://dotloop.github.io/public-api/
+  baseURL: https://api-gateway.dotloop.com/public/v2
+  tags:
+  - Participants
+  properties:
+  - type: OpenAPI
+    url: openapi/dotloop-participants-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
+- aid: dotloop:dotloop-profiles-api
+  name: dotloop Profiles API
+  description: Individual, team, and brokerage profiles that scope loops.
+  humanURL: https://dotloop.github.io/public-api/
+  baseURL: https://api-gateway.dotloop.com/public/v2
+  tags:
+  - Profiles
+  properties:
+  - type: OpenAPI
+    url: openapi/dotloop-profiles-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
+- aid: dotloop:dotloop-tasks-api
+  name: dotloop Tasks API
+  description: Task lists and task items on a loop.
+  humanURL: https://dotloop.github.io/public-api/
+  baseURL: https://api-gateway.dotloop.com/public/v2
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/dotloop-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
 - aid: dotloop:dotloop-webhooks-api
   name: dotloop Webhooks API
-  tags:
-  - Webhooks
-  - Subscriptions
-  - Events
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: Webhook subscriptions and delivered events.
   humanURL: https://dotloop.github.io/public-api/
   baseURL: https://api-gateway.dotloop.com/public/v2
+  tags:
+  - Webhooks
   properties:
-  - url: https://dotloop.github.io/public-api/
-    type: Documentation
-  - url: https://dotloop.github.io/public-api/#webhooks
-    type: APIReference
-  - url: openapi/dotloop-openapi.yml
-    type: OpenAPI
-  description: Manage webhook subscriptions and inspect delivered events. Clients create
-    subscriptions to loop or contact events; dotloop sends an HTTPS POST to the
-    configured URL when events occur. Events are retained for 90 days and can be
-    listed and retrieved for replay/reconciliation.
+  - type: OpenAPI
+    url: openapi/dotloop-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://dotloop.github.io/public-api/
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#account
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#profiles
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loops
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-details
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-it
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#folders
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#documents
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#participants
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#tasks
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#activities
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#contacts
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#loop-templates
+  - type: APIReference
+    url: https://dotloop.github.io/public-api/#webhooks
 common:
 - type: AgenticAccess
   url: agentic-access/dotloop-agentic-access.yml
