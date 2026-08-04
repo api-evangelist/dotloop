@@ -1,0 +1,689 @@
+openapi: 3.0.3
+info:
+  title: dotloop Public API v2
+  description: >-
+    The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for
+    the dotloop real estate transaction management platform (a Zillow Group
+    company). It exposes the authenticated account, profiles, loops
+    (transactions) and their structured details, folders, documents,
+    participants, tasks, activities, contacts, loop templates, and webhook
+    subscriptions, plus a Loop-It facade that creates and populates a loop in a
+    single call. All requests and responses are `application/json` (document
+    upload uses multipart form-data). Access is currently restricted to
+    INDIVIDUAL profiles. Endpoints and paths in this document are grounded in
+    the published developer guide at https://dotloop.github.io/public-api/.
+  termsOfService: https://www.dotloop.com/terms-of-service/
+  contact:
+    name: dotloop Developer Support
+    url: https://dotloop.github.io/public-api/
+  version: '2.0'
+servers:
+  - url: https://api-gateway.dotloop.com/public/v2
+    description: dotloop Public API v2
+security:
+  - oauth2: []
+tags:
+  - name: Account
+    description: The authenticated dotloop account.
+  - name: Profiles
+    description: Individual, team, and brokerage profiles that scope loops.
+  - name: Loops
+    description: Loops (real estate transactions).
+  - name: Loop Details
+    description: Structured detail fields of a loop.
+  - name: Loop It
+    description: Single-call loop creation facade.
+  - name: Folders
+    description: Folders that organize documents within a loop.
+  - name: Documents
+    description: Documents within a loop folder.
+  - name: Participants
+    description: Parties to a loop.
+  - name: Tasks
+    description: Task lists and task items on a loop.
+  - name: Activities
+    description: Read-only loop activity feed.
+  - name: Contacts
+    description: The authenticated user's contacts (address book).
+  - name: Loop Templates
+    description: Reusable transaction blueprints under a profile.
+  - name: Webhooks
+    description: Webhook subscriptions and delivered events.
+paths:
+  /account:
+    get:
+      operationId: getAccount
+      tags: [Account]
+      summary: Get the authenticated account.
+      description: Retrieves the account details of the authenticated individual (scope account:read).
+      responses:
+        '200':
+          description: The account.
+  /profile:
+    get:
+      operationId: listProfiles
+      tags: [Profiles]
+      summary: List profiles.
+      description: Lists all profiles the authenticated account can access (scope profile:read).
+      responses:
+        '200':
+          description: A list of profiles.
+    post:
+      operationId: createProfile
+      tags: [Profiles]
+      summary: Create a profile.
+      description: Creates a new profile (scope profile:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: The created profile.
+  /profile/{profile_id}:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+    get:
+      operationId: getProfile
+      tags: [Profiles]
+      summary: Get a profile.
+      description: Retrieves a single profile by ID (scope profile:read).
+      responses:
+        '200':
+          description: The profile.
+    patch:
+      operationId: updateProfile
+      tags: [Profiles]
+      summary: Update a profile.
+      description: Updates an existing profile (scope profile:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The updated profile.
+  /profile/{profile_id}/loop:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+    get:
+      operationId: listLoops
+      tags: [Loops]
+      summary: List loops.
+      description: Lists loops within a profile with pagination, filtering, and sorting (scope loop:read).
+      parameters:
+        - name: batch_number
+          in: query
+          schema:
+            type: integer
+        - name: batch_size
+          in: query
+          schema:
+            type: integer
+        - name: sort
+          in: query
+          schema:
+            type: string
+        - name: filter
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of loops.
+    post:
+      operationId: createLoop
+      tags: [Loops]
+      summary: Create a loop.
+      description: Creates a new loop within a profile (scope loop:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: The created loop.
+  /profile/{profile_id}/loop/{loop_id}:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+    get:
+      operationId: getLoop
+      tags: [Loops]
+      summary: Get a loop.
+      description: Retrieves a single loop by ID (scope loop:read).
+      responses:
+        '200':
+          description: The loop.
+    patch:
+      operationId: updateLoop
+      tags: [Loops]
+      summary: Update a loop.
+      description: Updates an existing loop (scope loop:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The updated loop.
+  /profile/{profile_id}/loop/{loop_id}/detail:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+    get:
+      operationId: getLoopDetails
+      tags: [Loop Details]
+      summary: Get loop details.
+      description: Retrieves the structured detail sections of a loop (scope loop:read).
+      responses:
+        '200':
+          description: The loop details.
+    patch:
+      operationId: updateLoopDetails
+      tags: [Loop Details]
+      summary: Update loop details.
+      description: Updates the structured detail sections of a loop (scope loop:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The updated loop details.
+  /loop-it:
+    post:
+      operationId: loopIt
+      tags: [Loop It]
+      summary: Create and populate a loop in one call.
+      description: >-
+        The Loop-It facade creates a new loop and populates transaction type and
+        status, participant contact data, property and listing details, and can
+        provision form templates using NRDS or MLS Agent IDs (scope loop:write).
+      parameters:
+        - name: profile_id
+          in: query
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: The created loop.
+  /profile/{profile_id}/loop/{loop_id}/folder:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+    get:
+      operationId: listFolders
+      tags: [Folders]
+      summary: List folders.
+      description: Lists the folders within a loop (scope loop:read).
+      responses:
+        '200':
+          description: A list of folders.
+    post:
+      operationId: createFolder
+      tags: [Folders]
+      summary: Create a folder.
+      description: Creates a new folder within a loop (scope loop:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: The created folder.
+  /profile/{profile_id}/loop/{loop_id}/folder/{folder_id}:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+      - $ref: '#/components/parameters/FolderId'
+    get:
+      operationId: getFolder
+      tags: [Folders]
+      summary: Get a folder.
+      description: Retrieves a single folder within a loop (scope loop:read).
+      responses:
+        '200':
+          description: The folder.
+    patch:
+      operationId: updateFolder
+      tags: [Folders]
+      summary: Update a folder.
+      description: Updates an existing folder within a loop (scope loop:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The updated folder.
+  /profile/{profile_id}/loop/{loop_id}/folder/{folder_id}/document:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+      - $ref: '#/components/parameters/FolderId'
+    get:
+      operationId: listDocuments
+      tags: [Documents]
+      summary: List documents.
+      description: Lists the documents within a loop folder (scope loop:read).
+      responses:
+        '200':
+          description: A list of documents.
+    post:
+      operationId: uploadDocument
+      tags: [Documents]
+      summary: Upload a document.
+      description: Uploads a new document into a loop folder using multipart form-data (scope loop:write).
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: The uploaded document.
+  /profile/{profile_id}/loop/{loop_id}/folder/{folder_id}/document/{document_id}:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+      - $ref: '#/components/parameters/FolderId'
+      - $ref: '#/components/parameters/DocumentId'
+    get:
+      operationId: getDocument
+      tags: [Documents]
+      summary: Get a document.
+      description: Retrieves a single document within a loop folder; can be downloaded as a PDF (scope loop:read).
+      responses:
+        '200':
+          description: The document.
+  /profile/{profile_id}/loop/{loop_id}/participant:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+    get:
+      operationId: listParticipants
+      tags: [Participants]
+      summary: List participants.
+      description: Lists the participants on a loop (scope loop:read).
+      responses:
+        '200':
+          description: A list of participants.
+    post:
+      operationId: addParticipant
+      tags: [Participants]
+      summary: Add a participant.
+      description: Adds a participant to a loop (scope loop:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: The added participant.
+  /profile/{profile_id}/loop/{loop_id}/participant/{participant_id}:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+      - $ref: '#/components/parameters/ParticipantId'
+    get:
+      operationId: getParticipant
+      tags: [Participants]
+      summary: Get a participant.
+      description: Retrieves a single participant on a loop (scope loop:read).
+      responses:
+        '200':
+          description: The participant.
+    patch:
+      operationId: updateParticipant
+      tags: [Participants]
+      summary: Update a participant.
+      description: Updates a participant on a loop (scope loop:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The updated participant.
+    delete:
+      operationId: removeParticipant
+      tags: [Participants]
+      summary: Remove a participant.
+      description: Removes a participant from a loop (scope loop:write).
+      responses:
+        '204':
+          description: The participant was removed.
+  /profile/{profile_id}/loop/{loop_id}/tasklist:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+    get:
+      operationId: listTaskLists
+      tags: [Tasks]
+      summary: List task lists.
+      description: Lists the task lists on a loop (scope loop:read).
+      responses:
+        '200':
+          description: A list of task lists.
+  /profile/{profile_id}/loop/{loop_id}/tasklist/{task_list_id}:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+      - $ref: '#/components/parameters/TaskListId'
+    get:
+      operationId: getTaskList
+      tags: [Tasks]
+      summary: Get a task list.
+      description: Retrieves a single task list on a loop (scope loop:read).
+      responses:
+        '200':
+          description: The task list.
+  /profile/{profile_id}/loop/{loop_id}/tasklist/{task_list_id}/task:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+      - $ref: '#/components/parameters/TaskListId'
+    get:
+      operationId: listTasks
+      tags: [Tasks]
+      summary: List task items.
+      description: Lists the task items within a task list (scope loop:read).
+      responses:
+        '200':
+          description: A list of task items.
+  /profile/{profile_id}/loop/{loop_id}/tasklist/{task_list_id}/task/{task_list_item_id}:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+      - $ref: '#/components/parameters/TaskListId'
+      - name: task_list_item_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      operationId: getTask
+      tags: [Tasks]
+      summary: Get a task item.
+      description: Retrieves a single task item within a task list (scope loop:read).
+      responses:
+        '200':
+          description: The task item.
+  /profile/{profile_id}/loop/{loop_id}/activity:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - $ref: '#/components/parameters/LoopId'
+    get:
+      operationId: listActivities
+      tags: [Activities]
+      summary: List loop activities.
+      description: Lists the activity feed for a loop - a read-only audit trail (scope loop:read).
+      responses:
+        '200':
+          description: A list of activities.
+  /contact:
+    get:
+      operationId: listContacts
+      tags: [Contacts]
+      summary: List contacts.
+      description: Lists the authenticated user's contacts (scope contact:read).
+      responses:
+        '200':
+          description: A list of contacts.
+    post:
+      operationId: createContact
+      tags: [Contacts]
+      summary: Create a contact.
+      description: Creates a new contact (scope contact:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: The created contact.
+  /contact/{contact_id}:
+    parameters:
+      - name: contact_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      operationId: getContact
+      tags: [Contacts]
+      summary: Get a contact.
+      description: Retrieves a single contact (scope contact:read).
+      responses:
+        '200':
+          description: The contact.
+    patch:
+      operationId: updateContact
+      tags: [Contacts]
+      summary: Update a contact.
+      description: Updates an existing contact (scope contact:write).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The updated contact.
+    delete:
+      operationId: deleteContact
+      tags: [Contacts]
+      summary: Delete a contact.
+      description: Deletes a contact (scope contact:write).
+      responses:
+        '204':
+          description: The contact was deleted.
+  /profile/{profile_id}/loop-template:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+    get:
+      operationId: listLoopTemplates
+      tags: [Loop Templates]
+      summary: List loop templates.
+      description: Lists the loop templates defined under a profile (scope template:read or loop:write).
+      responses:
+        '200':
+          description: A list of loop templates.
+  /profile/{profile_id}/loop-template/{loop_template_id}:
+    parameters:
+      - $ref: '#/components/parameters/ProfileId'
+      - name: loop_template_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      operationId: getLoopTemplate
+      tags: [Loop Templates]
+      summary: Get a loop template.
+      description: Retrieves a single loop template under a profile (scope template:read or loop:write).
+      responses:
+        '200':
+          description: The loop template.
+  /subscription:
+    get:
+      operationId: listSubscriptions
+      tags: [Webhooks]
+      summary: List webhook subscriptions.
+      description: Lists the client application's webhook subscriptions (client-scoped).
+      responses:
+        '200':
+          description: A list of subscriptions.
+    post:
+      operationId: createSubscription
+      tags: [Webhooks]
+      summary: Create a webhook subscription.
+      description: Creates a webhook subscription to loop or contact events (scope contact:read or loop:read).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: The created subscription.
+  /subscription/{subscription_id}:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    get:
+      operationId: getSubscription
+      tags: [Webhooks]
+      summary: Get a webhook subscription.
+      description: Retrieves a single webhook subscription (client-scoped).
+      responses:
+        '200':
+          description: The subscription.
+    patch:
+      operationId: updateSubscription
+      tags: [Webhooks]
+      summary: Update a webhook subscription.
+      description: Updates an existing webhook subscription (scope contact:read or loop:read).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: The updated subscription.
+    delete:
+      operationId: deleteSubscription
+      tags: [Webhooks]
+      summary: Delete a webhook subscription.
+      description: Deletes a webhook subscription (client-scoped).
+      responses:
+        '204':
+          description: The subscription was deleted.
+  /subscription/{subscription_id}/event:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+    get:
+      operationId: listSubscriptionEvents
+      tags: [Webhooks]
+      summary: List webhook events.
+      description: Lists the events delivered for a subscription. Events are retained for 90 days (client-scoped).
+      responses:
+        '200':
+          description: A list of events.
+  /subscription/{subscription_id}/event/{event_id}:
+    parameters:
+      - $ref: '#/components/parameters/SubscriptionId'
+      - name: event_id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      operationId: getSubscriptionEvent
+      tags: [Webhooks]
+      summary: Get a webhook event.
+      description: Retrieves a single delivered webhook event (client-scoped).
+      responses:
+        '200':
+          description: The event.
+components:
+  parameters:
+    ProfileId:
+      name: profile_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    LoopId:
+      name: loop_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    FolderId:
+      name: folder_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    DocumentId:
+      name: document_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    ParticipantId:
+      name: participant_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    TaskListId:
+      name: task_list_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    SubscriptionId:
+      name: subscription_id
+      in: path
+      required: true
+      schema:
+        type: integer
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: >-
+        OAuth2 authorization code flow. Access tokens are short-lived (typically
+        12 hours) and passed as a Bearer token. Scopes include account:read,
+        profile:read, profile:write, loop:read, loop:write, contact:read,
+        contact:write, and template:read.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.dotloop.com/oauth/authorize
+          tokenUrl: https://auth.dotloop.com/oauth/token
+          scopes:
+            account:read: Read account details.
+            profile:read: Read profiles.
+            profile:write: Create and update profiles.
+            loop:read: Read loops, details, folders, documents, participants, tasks, and activities.
+            loop:write: Create and update loops and their contents.
+            contact:read: Read contacts.
+            contact:write: Create, update, and delete contacts.
+            template:read: Read loop templates.

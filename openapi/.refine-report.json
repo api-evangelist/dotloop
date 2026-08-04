@@ -1,0 +1,38 @@
+{
+  "provider": "dotloop",
+  "sources": [
+    "dotloop-account-api-openapi.yml",
+    "dotloop-activities-api-openapi.yml",
+    "dotloop-contacts-api-openapi.yml",
+    "dotloop-documents-api-openapi.yml",
+    "dotloop-folders-api-openapi.yml",
+    "dotloop-loop-details-api-openapi.yml",
+    "dotloop-loop-it-api-openapi.yml",
+    "dotloop-loop-templates-api-openapi.yml",
+    "dotloop-loops-api-openapi.yml",
+    "dotloop-participants-api-openapi.yml",
+    "dotloop-profiles-api-openapi.yml",
+    "dotloop-tasks-api-openapi.yml",
+    "dotloop-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "dotloop-account-api-openapi.yml",
+    "dotloop-activities-api-openapi.yml",
+    "dotloop-contacts-api-openapi.yml",
+    "dotloop-documents-api-openapi.yml",
+    "dotloop-folders-api-openapi.yml",
+    "dotloop-loop-details-api-openapi.yml",
+    "dotloop-loop-it-api-openapi.yml",
+    "dotloop-loop-templates-api-openapi.yml",
+    "dotloop-loops-api-openapi.yml",
+    "dotloop-participants-api-openapi.yml",
+    "dotloop-profiles-api-openapi.yml",
+    "dotloop-tasks-api-openapi.yml",
+    "dotloop-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
