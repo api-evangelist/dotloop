@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dotloop Public API v2 Account Webhooks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.dotloop.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.dotloop.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook subscriptions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/subscription"
+          },
+          "docs": "Lists the client application's webhook subscriptions (client-scoped)."
+        },
+        {
+          "info": {
+            "name": "Create a webhook subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.dotloop.com/public/v2/subscription",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a webhook subscription to loop or contact events (scope contact:read or loop:read)."
+        },
+        {
+          "info": {
+            "name": "Get a webhook subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/subscription/:subscription_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single webhook subscription (client-scoped)."
+        },
+        {
+          "info": {
+            "name": "Update a webhook subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-gateway.dotloop.com/public/v2/subscription/:subscription_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing webhook subscription (scope contact:read or loop:read)."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-gateway.dotloop.com/public/v2/subscription/:subscription_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a webhook subscription (client-scoped)."
+        },
+        {
+          "info": {
+            "name": "List webhook events.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/subscription/:subscription_id/event",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists the events delivered for a subscription. Events are retained for 90 days (client-scoped)."
+        },
+        {
+          "info": {
+            "name": "Get a webhook event.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/subscription/:subscription_id/event/:event_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single delivered webhook event (client-scoped)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

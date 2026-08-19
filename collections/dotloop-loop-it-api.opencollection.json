@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dotloop Public API v2 Account Loop It API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.dotloop.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.dotloop.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Loop It",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create and populate a loop in one call.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.dotloop.com/public/v2/loop-it",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The Loop-It facade creates a new loop and populates transaction type and status, participant contact data, property and listing details, and can provision form templates using NRDS or MLS Agent IDs (scope loop:write)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

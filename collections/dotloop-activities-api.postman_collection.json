@@ -1,0 +1,159 @@
+{
+  "item": [
+    {
+      "id": "99b25b22-7ab8-4439-a914-68aa1722fdfd",
+      "name": "Activities",
+      "description": {
+        "content": "Read-only loop activity feed.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dc31aec2-1ede-4b39-b002-56553411d597",
+          "name": "List loop activities.",
+          "request": {
+            "name": "List loop activities.",
+            "description": {
+              "content": "Lists the activity feed for a loop - a read-only audit trail (scope loop:read).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                ":profile_id",
+                "loop",
+                ":loop_id",
+                "activity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "profile_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "loop_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "169bcb67-48b7-4a67-a06f-ed81e210acaf",
+              "name": "A list of activities.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    ":profile_id",
+                    "loop",
+                    ":loop_id",
+                    "activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "profile_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "loop_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-gateway.dotloop.com/public/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "account:read profile:read profile:write loop:read loop:write contact:read contact:write template:read"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.dotloop.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.dotloop.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0c745052-24bc-4cbb-8455-4f284ff3de93",
+    "name": "dotloop Public API v2 Account Activities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company). It exposes the authenticated account, profiles, loops (transactions) and their structured details, folders, documents, participants, tasks, activities, contacts, loop templates, and webhook subscriptions, plus a Loop-It facade that creates and populates a loop in a single call. All requests and responses are `application/json` (document upload uses multipart form-data). Access is currently restricted to INDIVIDUAL profiles. Endpoints and paths in this document are grounded in the published developer guide at https://dotloop.github.io/public-api/.\n\nContact Support:\n Name: dotloop Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dotloop Public API v2 Account Profiles API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.dotloop.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.dotloop.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Profiles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List profiles.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile"
+          },
+          "docs": "Lists all profiles the authenticated account can access (scope profile:read)."
+        },
+        {
+          "info": {
+            "name": "Create a profile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new profile (scope profile:write)."
+        },
+        {
+          "info": {
+            "name": "Get a profile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single profile by ID (scope profile:read)."
+        },
+        {
+          "info": {
+            "name": "Update a profile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing profile (scope profile:write)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

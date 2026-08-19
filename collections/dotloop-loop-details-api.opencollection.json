@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dotloop Public API v2 Account Loop Details API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.dotloop.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.dotloop.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Loop Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get loop details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/detail",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "loop_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the structured detail sections of a loop (scope loop:read)."
+        },
+        {
+          "info": {
+            "name": "Update loop details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/detail",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "loop_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the structured detail sections of a loop (scope loop:write)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dotloop Public API v2 Account Tasks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.dotloop.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.dotloop.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List task lists.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/tasklist",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "loop_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists the task lists on a loop (scope loop:read)."
+        },
+        {
+          "info": {
+            "name": "Get a task list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/tasklist/:task_list_id",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "loop_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_list_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single task list on a loop (scope loop:read)."
+        },
+        {
+          "info": {
+            "name": "List task items.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/tasklist/:task_list_id/task",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "loop_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_list_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists the task items within a task list (scope loop:read)."
+        },
+        {
+          "info": {
+            "name": "Get a task item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/tasklist/:task_list_id/task/:task_list_item_id",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "loop_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_list_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "task_list_item_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single task item within a task list (scope loop:read)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

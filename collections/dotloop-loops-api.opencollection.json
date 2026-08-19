@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dotloop Public API v2 Account Loops API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.dotloop.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.dotloop.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Loops",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List loops.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "batch_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "batch_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists loops within a profile with pagination, filtering, and sorting (scope loop:read)."
+        },
+        {
+          "info": {
+            "name": "Create a loop.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new loop within a profile (scope loop:write)."
+        },
+        {
+          "info": {
+            "name": "Get a loop.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "loop_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single loop by ID (scope loop:read)."
+        },
+        {
+          "info": {
+            "name": "Update a loop.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "loop_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing loop (scope loop:write)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

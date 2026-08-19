@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "dotloop Public API v2 Account Folders API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.dotloop.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.dotloop.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List folders.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/folder",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "loop_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists the folders within a loop (scope loop:read)."
+        },
+        {
+          "info": {
+            "name": "Create a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/folder",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "loop_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new folder within a loop (scope loop:write)."
+        },
+        {
+          "info": {
+            "name": "Get a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/folder/:folder_id",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "loop_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single folder within a loop (scope loop:read)."
+        },
+        {
+          "info": {
+            "name": "Update a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-gateway.dotloop.com/public/v2/profile/:profile_id/loop/:loop_id/folder/:folder_id",
+            "params": [
+              {
+                "name": "profile_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "loop_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "folder_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing folder within a loop (scope loop:write)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
