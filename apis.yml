@@ -25,6 +25,13 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dotloop.png
 tags:
+- Real-Estate
+- Transaction Management
+- Loops
+- Documents
+- E-Signature
+- Zillow Group
+tags_raw:
 - Real Estate
 - Transaction Management
 - Loops
@@ -459,6 +466,8 @@ apis:
   humanURL: https://dotloop.github.io/public-api/
   baseURL: https://api-gateway.dotloop.com/public/v2
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
@@ -497,6 +506,8 @@ apis:
   humanURL: https://dotloop.github.io/public-api/
   baseURL: https://api-gateway.dotloop.com/public/v2
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
