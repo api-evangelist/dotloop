@@ -1,0 +1,25 @@
+slug: dotloop
+provider: dotloop
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Real Estate
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Loops
+  spec_file: dotloop-loops-api-openapi.yml
+  capability_id: BC-4960
+  capability_id_l1: BC-4960
+  capability_name: Real Estate Brokerage Management
+  confidence: 0.7
+  evidence: POST /profile/{profile_id}/loop — "Create a loop."; loops are "loops (transactions)" per the
+    description
+  reason: CRUD over real-estate transactions (loops) managed by agents and brokerages is brokerage transaction
+    management; no single L2 is named by the operations.

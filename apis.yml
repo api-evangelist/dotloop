@@ -553,6 +553,9 @@ apis:
   - type: APIReference
     url: https://dotloop.github.io/public-api/#webhooks
 common:
+- type: CapabilityMap
+  url: capabilities/dotloop-capability-edges.yml
+  name: dotloop Business Capability Map
 - type: AgenticAccess
   url: agentic-access/dotloop-agentic-access.yml
 - type: DomainSecurity
