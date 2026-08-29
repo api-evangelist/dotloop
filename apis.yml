@@ -10,6 +10,18 @@ description: dotloop is a real estate transaction management platform (owned by 
   profiles, loops and loop details, folders, documents, participants, tasks,
   activities, contacts, loop templates, and webhook subscriptions, plus a Loop-It
   facade for one-call loop creation.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
