@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: dotloop Public API v2 Account Contacts API
-  description: The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company). It exposes the authenticated account, profiles, loops (transactions) and their structured details, folders, documents, participants, tasks, activities, contacts, loop templates, and webhook subscriptions, plus a Loop-It facade that creates and populates a loop in a single call. All requests and responses are `application/json` (document upload uses multipart form-data). Access is currently restricted to INDIVIDUAL profiles. Endpoints and paths in this document are grounded in the published developer guide at https://dotloop.github.io/public-api/.
+  title: dotloop Public API v2 Contacts API
+  description: The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company).
   termsOfService: https://www.dotloop.com/terms-of-service/
   contact:
     name: dotloop Developer Support
@@ -21,7 +21,7 @@ paths:
       operationId: listContacts
       tags:
       - Contacts
-      summary: List contacts.
+      summary: List contacts
       description: Lists the authenticated user's contacts (scope contact:read).
       responses:
         '200':
@@ -30,7 +30,7 @@ paths:
       operationId: createContact
       tags:
       - Contacts
-      summary: Create a contact.
+      summary: Create a contact
       description: Creates a new contact (scope contact:write).
       requestBody:
         required: true
@@ -52,7 +52,7 @@ paths:
       operationId: getContact
       tags:
       - Contacts
-      summary: Get a contact.
+      summary: Get a contact
       description: Retrieves a single contact (scope contact:read).
       responses:
         '200':
@@ -61,7 +61,7 @@ paths:
       operationId: updateContact
       tags:
       - Contacts
-      summary: Update a contact.
+      summary: Update a contact
       description: Updates an existing contact (scope contact:write).
       requestBody:
         required: true
@@ -76,7 +76,7 @@ paths:
       operationId: deleteContact
       tags:
       - Contacts
-      summary: Delete a contact.
+      summary: Delete a contact
       description: Deletes a contact (scope contact:write).
       responses:
         '204':

@@ -1,19 +1,7 @@
 {
   "provider": "dotloop",
   "sources": [
-    "dotloop-account-api-openapi.yml",
-    "dotloop-activities-api-openapi.yml",
-    "dotloop-contacts-api-openapi.yml",
-    "dotloop-documents-api-openapi.yml",
-    "dotloop-folders-api-openapi.yml",
-    "dotloop-loop-details-api-openapi.yml",
-    "dotloop-loop-it-api-openapi.yml",
-    "dotloop-loop-templates-api-openapi.yml",
-    "dotloop-loops-api-openapi.yml",
-    "dotloop-participants-api-openapi.yml",
-    "dotloop-profiles-api-openapi.yml",
-    "dotloop-tasks-api-openapi.yml",
-    "dotloop-webhooks-api-openapi.yml"
+    "_original/dotloop-openapi.yml"
   ],
   "outputs": [
     "dotloop-account-api-openapi.yml",
@@ -33,6 +21,24 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "dotloop-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "dotloop-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dotloop-activities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dotloop-contacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dotloop-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dotloop-folders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dotloop-loop-details-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dotloop-loop-it-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dotloop-loop-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dotloop-loops-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dotloop-participants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dotloop-profiles-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dotloop-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dotloop-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

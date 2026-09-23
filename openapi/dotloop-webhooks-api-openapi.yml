@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: dotloop Public API v2 Account Webhooks API
-  description: The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company). It exposes the authenticated account, profiles, loops (transactions) and their structured details, folders, documents, participants, tasks, activities, contacts, loop templates, and webhook subscriptions, plus a Loop-It facade that creates and populates a loop in a single call. All requests and responses are `application/json` (document upload uses multipart form-data). Access is currently restricted to INDIVIDUAL profiles. Endpoints and paths in this document are grounded in the published developer guide at https://dotloop.github.io/public-api/.
+  title: dotloop Public API v2 Webhooks API
+  description: The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company).
   termsOfService: https://www.dotloop.com/terms-of-service/
   contact:
     name: dotloop Developer Support
@@ -21,7 +21,7 @@ paths:
       operationId: listSubscriptions
       tags:
       - Webhooks
-      summary: List webhook subscriptions.
+      summary: List webhook subscriptions
       description: Lists the client application's webhook subscriptions (client-scoped).
       responses:
         '200':
@@ -30,7 +30,7 @@ paths:
       operationId: createSubscription
       tags:
       - Webhooks
-      summary: Create a webhook subscription.
+      summary: Create a webhook subscription
       description: Creates a webhook subscription to loop or contact events (scope contact:read or loop:read).
       requestBody:
         required: true
@@ -48,7 +48,7 @@ paths:
       operationId: getSubscription
       tags:
       - Webhooks
-      summary: Get a webhook subscription.
+      summary: Get a webhook subscription
       description: Retrieves a single webhook subscription (client-scoped).
       responses:
         '200':
@@ -57,7 +57,7 @@ paths:
       operationId: updateSubscription
       tags:
       - Webhooks
-      summary: Update a webhook subscription.
+      summary: Update a webhook subscription
       description: Updates an existing webhook subscription (scope contact:read or loop:read).
       requestBody:
         required: true
@@ -72,7 +72,7 @@ paths:
       operationId: deleteSubscription
       tags:
       - Webhooks
-      summary: Delete a webhook subscription.
+      summary: Delete a webhook subscription
       description: Deletes a webhook subscription (client-scoped).
       responses:
         '204':
@@ -84,7 +84,7 @@ paths:
       operationId: listSubscriptionEvents
       tags:
       - Webhooks
-      summary: List webhook events.
+      summary: List webhook events
       description: Lists the events delivered for a subscription. Events are retained for 90 days (client-scoped).
       responses:
         '200':
@@ -101,7 +101,7 @@ paths:
       operationId: getSubscriptionEvent
       tags:
       - Webhooks
-      summary: Get a webhook event.
+      summary: Get a webhook event
       description: Retrieves a single delivered webhook event (client-scoped).
       responses:
         '200':

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: dotloop Public API v2 Account Documents API
-  description: The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company). It exposes the authenticated account, profiles, loops (transactions) and their structured details, folders, documents, participants, tasks, activities, contacts, loop templates, and webhook subscriptions, plus a Loop-It facade that creates and populates a loop in a single call. All requests and responses are `application/json` (document upload uses multipart form-data). Access is currently restricted to INDIVIDUAL profiles. Endpoints and paths in this document are grounded in the published developer guide at https://dotloop.github.io/public-api/.
+  title: dotloop Public API v2 Documents API
+  description: The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company).
   termsOfService: https://www.dotloop.com/terms-of-service/
   contact:
     name: dotloop Developer Support
@@ -25,7 +25,7 @@ paths:
       operationId: listDocuments
       tags:
       - Documents
-      summary: List documents.
+      summary: List documents
       description: Lists the documents within a loop folder (scope loop:read).
       responses:
         '200':
@@ -34,7 +34,7 @@ paths:
       operationId: uploadDocument
       tags:
       - Documents
-      summary: Upload a document.
+      summary: Upload a document
       description: Uploads a new document into a loop folder using multipart form-data (scope loop:write).
       requestBody:
         required: true
@@ -59,21 +59,21 @@ paths:
       operationId: getDocument
       tags:
       - Documents
-      summary: Get a document.
+      summary: Get a document
       description: Retrieves a single document within a loop folder; can be downloaded as a PDF (scope loop:read).
       responses:
         '200':
           description: The document.
 components:
   parameters:
-    FolderId:
-      name: folder_id
+    DocumentId:
+      name: document_id
       in: path
       required: true
       schema:
         type: integer
-    DocumentId:
-      name: document_id
+    LoopId:
+      name: loop_id
       in: path
       required: true
       schema:
@@ -84,8 +84,8 @@ components:
       required: true
       schema:
         type: integer
-    LoopId:
-      name: loop_id
+    FolderId:
+      name: folder_id
       in: path
       required: true
       schema:

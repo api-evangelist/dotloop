@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: dotloop Public API v2 Account Profiles API
-  description: The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company). It exposes the authenticated account, profiles, loops (transactions) and their structured details, folders, documents, participants, tasks, activities, contacts, loop templates, and webhook subscriptions, plus a Loop-It facade that creates and populates a loop in a single call. All requests and responses are `application/json` (document upload uses multipart form-data). Access is currently restricted to INDIVIDUAL profiles. Endpoints and paths in this document are grounded in the published developer guide at https://dotloop.github.io/public-api/.
+  title: dotloop Public API v2 Profiles API
+  description: The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API for the dotloop real estate transaction management platform (a Zillow Group company).
   termsOfService: https://www.dotloop.com/terms-of-service/
   contact:
     name: dotloop Developer Support
@@ -21,7 +21,7 @@ paths:
       operationId: listProfiles
       tags:
       - Profiles
-      summary: List profiles.
+      summary: List profiles
       description: Lists all profiles the authenticated account can access (scope profile:read).
       responses:
         '200':
@@ -30,7 +30,7 @@ paths:
       operationId: createProfile
       tags:
       - Profiles
-      summary: Create a profile.
+      summary: Create a profile
       description: Creates a new profile (scope profile:write).
       requestBody:
         required: true
@@ -48,7 +48,7 @@ paths:
       operationId: getProfile
       tags:
       - Profiles
-      summary: Get a profile.
+      summary: Get a profile
       description: Retrieves a single profile by ID (scope profile:read).
       responses:
         '200':
@@ -57,7 +57,7 @@ paths:
       operationId: updateProfile
       tags:
       - Profiles
-      summary: Update a profile.
+      summary: Update a profile
       description: Updates an existing profile (scope profile:write).
       requestBody:
         required: true
