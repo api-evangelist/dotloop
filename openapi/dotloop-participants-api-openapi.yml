@@ -84,8 +84,8 @@ paths:
           description: The participant was removed.
 components:
   parameters:
-    LoopId:
-      name: loop_id
+    ProfileId:
+      name: profile_id
       in: path
       required: true
       schema:
@@ -96,8 +96,8 @@ components:
       required: true
       schema:
         type: integer
-    ProfileId:
-      name: profile_id
+    LoopId:
+      name: loop_id
       in: path
       required: true
       schema:
