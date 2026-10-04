@@ -66,18 +66,6 @@ paths:
           description: The document.
 components:
   parameters:
-    FolderId:
-      name: folder_id
-      in: path
-      required: true
-      schema:
-        type: integer
-    LoopId:
-      name: loop_id
-      in: path
-      required: true
-      schema:
-        type: integer
     DocumentId:
       name: document_id
       in: path
@@ -86,6 +74,18 @@ components:
         type: integer
     ProfileId:
       name: profile_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    FolderId:
+      name: folder_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    LoopId:
+      name: loop_id
       in: path
       required: true
       schema:

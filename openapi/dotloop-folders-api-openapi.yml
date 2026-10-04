@@ -75,6 +75,12 @@ paths:
           description: The updated folder.
 components:
   parameters:
+    ProfileId:
+      name: profile_id
+      in: path
+      required: true
+      schema:
+        type: integer
     FolderId:
       name: folder_id
       in: path
@@ -83,12 +89,6 @@ components:
         type: integer
     LoopId:
       name: loop_id
-      in: path
-      required: true
-      schema:
-        type: integer
-    ProfileId:
-      name: profile_id
       in: path
       required: true
       schema:
