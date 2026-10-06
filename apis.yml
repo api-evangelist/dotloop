@@ -52,7 +52,7 @@ tags_raw:
 - Zillow Group
 - Real-Estate
 created: '2026-07-04'
-modified: '2026-07-04'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: dotloop:dotloop-account-api
@@ -554,6 +554,8 @@ apis:
   - type: APIReference
     url: https://dotloop.github.io/public-api/#webhooks
 common:
+- url: https://www.dotloop.com/blog/
+  type: Blog
 - type: CapabilityMap
   url: capabilities/dotloop-capability-edges.yml
   name: dotloop Business Capability Map
