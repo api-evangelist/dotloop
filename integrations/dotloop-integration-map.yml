@@ -1,0 +1,213 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: dotloop
+workflows:
+- file: dotloop-constant-contact-new-loop-contact-list.yml
+  title: Dotloop Constant Contact new loop contact
+  partner: constant-contact
+  template: https://zapier.com/apps/constant-contact/integrations/dotloop/255569394/add-new-dotloop-loops-to-constant-contact-list-as-contacts
+  repos:
+  - dotloop
+  - constant-contact
+  steps:
+  - step: list-loops
+    repo: dotloop
+    spec_file: dotloop-loops-api-openapi.yml
+    operationId: listLoops
+    tag: Loops
+    capability_id: BC-4960
+    capability: Real Estate Brokerage Management
+    capability_l1: BC-4960
+    intent: null
+    effect: null
+    unmapped: null
+  - step: upsert-contact
+    repo: constant-contact
+    spec_file: constant-contact-contacts-api-openapi.yml
+    operationId: createOrUpdateContact
+    tag: Contacts
+    capability_id: BC-420.10
+    capability: Customer Data Management
+    capability_l1: BC-420
+    intent: Create or update a contact from a sign-up
+    effect: write
+    unmapped: null
+  connects:
+    dotloop:
+      capabilities:
+      - BC-4960
+      tags:
+      - Loops
+    constant-contact:
+      capabilities:
+      - BC-420.10
+      tags:
+      - Contacts
+  intents:
+  - Create or update a contact from a sign-up
+- file: dotloop-google-drive-new-loop-drive-folder.yml
+  title: Dotloop Google Drive new loop folder
+  partner: google-drive
+  template: https://zapier.com/apps/dotloop/integrations/google-drive/50654/create-google-drive-folders-from-new-dotloop-loops
+  repos:
+  - dotloop
+  - google-drive
+  steps:
+  - step: list-loops
+    repo: dotloop
+    spec_file: dotloop-loops-api-openapi.yml
+    operationId: listLoops
+    tag: Loops
+    capability_id: BC-4960
+    capability: Real Estate Brokerage Management
+    capability_l1: BC-4960
+    intent: null
+    effect: null
+    unmapped: null
+  - step: create-folder
+    repo: google-drive
+    spec_file: google-drive-files-api-openapi.yml
+    operationId: createFile
+    tag: Files
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  connects:
+    dotloop:
+      capabilities:
+      - BC-4960
+      tags:
+      - Loops
+    google-drive:
+      capabilities: []
+      tags:
+      - Files
+  intents: []
+- file: dotloop-google-sheets-new-loop-sheet-row.yml
+  title: Dotloop Google Sheets new loop row
+  partner: google-sheets
+  template: https://zapier.com/apps/dotloop/integrations/google-sheets/55659/create-google-sheets-spreadsheet-rows-from-new-dotloop-loops
+  repos:
+  - dotloop
+  - google-sheets
+  steps:
+  - step: list-loops
+    repo: dotloop
+    spec_file: dotloop-loops-api-openapi.yml
+    operationId: listLoops
+    tag: Loops
+    capability_id: BC-4960
+    capability: Real Estate Brokerage Management
+    capability_l1: BC-4960
+    intent: null
+    effect: null
+    unmapped: null
+  - step: append-row
+    repo: google-sheets
+    spec_file: google-sheets-values-api-openapi.yml
+    operationId: appendValues
+    tag: Values
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  connects:
+    dotloop:
+      capabilities:
+      - BC-4960
+      tags:
+      - Loops
+    google-sheets:
+      capabilities: []
+      tags:
+      - Values
+  intents: []
+- file: dotloop-notion-new-loop-page-content.yml
+  title: Dotloop Notion new loop page content
+  partner: notion
+  template: https://zapier.com/apps/dotloop/integrations/notion/255566639/add-content-to-notion-pages-whenever-new-loops-appear-in-dotloop
+  repos:
+  - dotloop
+  - notion
+  steps:
+  - step: list-loops
+    repo: dotloop
+    spec_file: dotloop-loops-api-openapi.yml
+    operationId: listLoops
+    tag: Loops
+    capability_id: BC-4960
+    capability: Real Estate Brokerage Management
+    capability_l1: BC-4960
+    intent: null
+    effect: null
+    unmapped: null
+  - step: append-content
+    repo: notion
+    spec_file: notion-blocks-api-openapi.yml
+    operationId: appendBlockChildren
+    tag: Blocks
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  connects:
+    dotloop:
+      capabilities:
+      - BC-4960
+      tags:
+      - Loops
+    notion:
+      capabilities: []
+      tags:
+      - Blocks
+  intents: []
+- file: dotloop-slack-new-loop-channel-message.yml
+  title: Dotloop Slack new loop channel message
+  partner: slack
+  template: https://zapier.com/apps/dotloop/integrations/slack/55663/post-slack-channel-messages-for-new-dotloop-loops
+  repos:
+  - dotloop
+  - slack
+  steps:
+  - step: list-loops
+    repo: dotloop
+    spec_file: dotloop-loops-api-openapi.yml
+    operationId: listLoops
+    tag: Loops
+    capability_id: BC-4960
+    capability: Real Estate Brokerage Management
+    capability_l1: BC-4960
+    intent: null
+    effect: null
+    unmapped: null
+  - step: post-message
+    repo: slack
+    spec_file: slack-chat-api-openapi.yml
+    operationId: postChatPostmessage
+    tag: Chat
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Send a message to a channel
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    dotloop:
+      capabilities:
+      - BC-4960
+      tags:
+      - Loops
+    slack:
+      capabilities: []
+      tags:
+      - Chat
+  intents:
+  - Send a message to a channel

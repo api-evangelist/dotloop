@@ -15,8 +15,8 @@
   evidence: https://zapier.com/apps/dotloop/integrations/google-drive/50654/create-google-drive-folders-from-new-dotloop-loops
   template: https://zapier.com/apps/dotloop/integrations/google-drive/50654/create-google-drive-folders-from-new-dotloop-loops
   source: template
-  status: pending-generation
-  arazzo: null
+  arazzo: dotloop-google-drive-new-loop-drive-folder.yml
+  status: arazzo
 - slug: dotloop-add-new-dotloop-loops-to-constant-contact-list-as-contacts
   label: Add new Dotloop loops to Constant Contact list as contacts
   partner: constant-contact
@@ -29,8 +29,8 @@
   evidence: https://zapier.com/apps/constant-contact/integrations/dotloop/255569394/add-new-dotloop-loops-to-constant-contact-list-as-contacts
   template: https://zapier.com/apps/constant-contact/integrations/dotloop/255569394/add-new-dotloop-loops-to-constant-contact-list-as-contacts
   source: template
-  status: pending-generation
-  arazzo: null
+  arazzo: dotloop-constant-contact-new-loop-contact-list.yml
+  status: arazzo
 - slug: dotloop-post-slack-channel-messages-for-new-dotloop-loops
   label: Post Slack channel messages for new dotloop loops
   partner: slack
@@ -43,8 +43,8 @@
   evidence: https://zapier.com/apps/dotloop/integrations/slack/55663/post-slack-channel-messages-for-new-dotloop-loops
   template: https://zapier.com/apps/dotloop/integrations/slack/55663/post-slack-channel-messages-for-new-dotloop-loops
   source: template
-  status: pending-generation
-  arazzo: null
+  arazzo: dotloop-slack-new-loop-channel-message.yml
+  status: arazzo
 - slug: dotloop-create-google-sheets-spreadsheet-rows-from-new-dotloop-loops
   label: Create Google Sheets spreadsheet rows from new dotloop loops
   partner: google-sheets
@@ -57,8 +57,8 @@
   evidence: https://zapier.com/apps/dotloop/integrations/google-sheets/55659/create-google-sheets-spreadsheet-rows-from-new-dotloop-loops
   template: https://zapier.com/apps/dotloop/integrations/google-sheets/55659/create-google-sheets-spreadsheet-rows-from-new-dotloop-loops
   source: template
-  status: pending-generation
-  arazzo: null
+  arazzo: dotloop-google-sheets-new-loop-sheet-row.yml
+  status: arazzo
 - slug: dotloop-add-content-to-notion-pages-whenever-new-loops-appear-in-dotloop
   label: Add content to Notion pages whenever new loops appear in Dotloop
   partner: notion
@@ -71,8 +71,8 @@
   evidence: https://zapier.com/apps/dotloop/integrations/notion/255566639/add-content-to-notion-pages-whenever-new-loops-appear-in-dotloop
   template: https://zapier.com/apps/dotloop/integrations/notion/255566639/add-content-to-notion-pages-whenever-new-loops-appear-in-dotloop
   source: template
-  status: pending-generation
-  arazzo: null
+  arazzo: dotloop-notion-new-loop-page-content.yml
+  status: arazzo
 - slug: dotloop-create-loops-in-dotloop-for-new-submissions-in-jotform
   label: Create loops in Dotloop for new submissions in Jotform
   partner: jotform
@@ -126,6 +126,8 @@
   evidence: https://zapier.com/apps/dotloop/integrations/slack/55662/send-direct-messages-on-slack-for-new-dotloop-loops
   template: https://zapier.com/apps/dotloop/integrations/slack/55662/send-direct-messages-on-slack-for-new-dotloop-loops
   source: template
+  related_arazzo:
+  - dotloop-slack-new-loop-channel-message.yml
   status: pending-generation
   arazzo: null
 - slug: dotloop-hubspot

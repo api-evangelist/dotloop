@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: Dotloop Google Sheets new loop row
+  summary: Create Google Sheets spreadsheet rows from new dotloop loops
+  description: Create Google Sheets spreadsheet rows from new dotloop loops. Reads the newest loop from Dotloop and hands it to google-sheets. Recreated from the Zapier template linked in x-integration;
+    Dotloop has no new-loop trigger operation, so the loop is polled with listLoops.
+  version: 1.0.0
+sourceDescriptions:
+- name: dotloopLoops
+  url: https://raw.githubusercontent.com/api-evangelist/dotloop/refs/heads/main/openapi/dotloop-loops-api-openapi.yml
+  type: openapi
+- name: googleSheetsValues
+  url: https://raw.githubusercontent.com/api-evangelist/google-sheets/refs/heads/main/openapi/google-sheets-values-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: dotloop-google-sheets-new-loop-sheet-row
+  summary: Create Google Sheets spreadsheet rows from new dotloop loops
+  description: Create Google Sheets spreadsheet rows from new dotloop loops.
+  inputs:
+    type: object
+    properties:
+      profileId:
+        type: integer
+        description: Dotloop profile ID
+      spreadsheetId:
+        type: string
+      range:
+        type: string
+        description: e.g. Sheet1!A:C
+  steps:
+  - stepId: list-loops
+    description: Read the newest loop in the Dotloop profile.
+    operationId: $sourceDescriptions.dotloopLoops.listLoops
+    parameters:
+    - name: profile_id
+      in: path
+      value: $inputs.profileId
+    - name: sort
+      in: query
+      value: created:desc
+    - name: batch_size
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      loopId: $response.body#/data/0/id
+      loopName: $response.body#/data/0/name
+      loopUrl: $response.body#/data/0/loopUrl
+  - stepId: append-row
+    description: Append the loop as a spreadsheet row.
+    operationId: $sourceDescriptions.googleSheetsValues.appendValues
+    parameters:
+    - name: spreadsheetId
+      in: path
+      value: $inputs.spreadsheetId
+    - name: range
+      in: path
+      value: $inputs.range
+    - name: valueInputOption
+      in: query
+      value: USER_ENTERED
+    requestBody:
+      contentType: application/json
+      payload:
+        values:
+        - - $steps.list-loops.outputs.loopId
+          - $steps.list-loops.outputs.loopName
+          - $steps.list-loops.outputs.loopUrl
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      updatedRange: $response.body#/updates/updatedRange
+  outputs:
+    updatedRange: $steps.append-row.outputs.updatedRange
+x-integration:
+  partner: google-sheets
+  template: https://zapier.com/apps/dotloop/integrations/google-sheets/55659/create-google-sheets-spreadsheet-rows-from-new-dotloop-loops
+  edge_evidence: https://zapier.com/apps/dotloop/integrations/google-sheets/55659/create-google-sheets-spreadsheet-rows-from-new-dotloop-loops
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-13'
+  generator: claude-opus-5.5 market-workflows
+  guessed_steps:
+  - step: list-loops
+    cause: provider-contract
+    why: listLoops declares a 200 with no response schema, so the data/0/id, name and loopUrl paths and the sort value are not settled by the spec

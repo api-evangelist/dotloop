@@ -1,0 +1,81 @@
+arazzo: 1.0.1
+info:
+  title: Dotloop Constant Contact new loop contact
+  summary: Add new Dotloop loops to Constant Contact list as contacts
+  description: Add new Dotloop loops to Constant Contact list as contacts. Reads the newest loop from Dotloop and hands it to constant-contact. Recreated from the Zapier template linked in x-integration;
+    Dotloop has no new-loop trigger operation, so the loop is polled with listLoops.
+  version: 1.0.0
+sourceDescriptions:
+- name: dotloopLoops
+  url: https://raw.githubusercontent.com/api-evangelist/dotloop/refs/heads/main/openapi/dotloop-loops-api-openapi.yml
+  type: openapi
+- name: constantContactContacts
+  url: https://raw.githubusercontent.com/api-evangelist/constant-contact/refs/heads/main/openapi/constant-contact-contacts-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: dotloop-constant-contact-new-loop-contact-list
+  summary: Add new Dotloop loops to Constant Contact list as contacts
+  description: Add new Dotloop loops to Constant Contact list as contacts.
+  inputs:
+    type: object
+    properties:
+      profileId:
+        type: integer
+        description: Dotloop profile ID
+      listId:
+        type: string
+        description: Constant Contact list to add the contact to
+      email:
+        type: string
+        description: Email of the loop client (Dotloop listLoops does not return participant emails)
+  steps:
+  - stepId: list-loops
+    description: Read the newest loop in the Dotloop profile.
+    operationId: $sourceDescriptions.dotloopLoops.listLoops
+    parameters:
+    - name: profile_id
+      in: path
+      value: $inputs.profileId
+    - name: sort
+      in: query
+      value: created:desc
+    - name: batch_size
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      loopId: $response.body#/data/0/id
+      loopName: $response.body#/data/0/name
+      loopUrl: $response.body#/data/0/loopUrl
+  - stepId: upsert-contact
+    description: Create or update the contact and add it to the list.
+    operationId: $sourceDescriptions.constantContactContacts.createOrUpdateContact
+    requestBody:
+      contentType: application/json
+      payload:
+        email_address: $inputs.email
+        first_name: $steps.list-loops.outputs.loopName
+        list_memberships:
+        - $inputs.listId
+    successCriteria:
+    - condition: $statusCode == 200 || $statusCode == 201
+    outputs:
+      contactId: $response.body#/contact_id
+  outputs:
+    contactId: $steps.upsert-contact.outputs.contactId
+x-integration:
+  partner: constant-contact
+  template: https://zapier.com/apps/constant-contact/integrations/dotloop/255569394/add-new-dotloop-loops-to-constant-contact-list-as-contacts
+  edge_evidence: https://zapier.com/apps/constant-contact/integrations/dotloop/255569394/add-new-dotloop-loops-to-constant-contact-list-as-contacts
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-13'
+  generator: claude-opus-5.5 market-workflows
+  guessed_steps:
+  - step: list-loops
+    cause: provider-contract
+    why: listLoops declares a 200 with no response schema, so the data/0/id, name and loopUrl paths and the sort value are not settled by the spec
+  - step: upsert-contact
+    cause: provider-contract
+    why: the loop record in the Dotloop spec has no participant email, so the email comes from a workflow input and the loop name stands in for first_name
