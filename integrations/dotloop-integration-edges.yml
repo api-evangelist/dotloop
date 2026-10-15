@@ -6,6 +6,7 @@ checked:
 - https://composio.dev/toolkits/dotloop
 - https://monid.ai/tools/dotloop
 - https://n8n.io/integrations/dotloop/
+- https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/dotloop/integrations
 summary: null
 marketplace_apps:
@@ -353,6 +354,31 @@ edges:
   direction: third-party
   category: CRM (Customer Relationship Management)
   partner_url: https://www.wiseagent.com/
+- partner_name: Zapier
+  partner: zapier
+  partner_match: aggregator
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://zapier.com/apps/dotloop/integrations
+  category: null
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Dotloop
+    matched_domain: dotloop.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: dotloop
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 templates:
 - title: Create Google Drive folders from new Dotloop loops
   url: https://zapier.com/apps/dotloop/integrations/google-drive/50654/create-google-drive-folders-from-new-dotloop-loops
