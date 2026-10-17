@@ -46,14 +46,14 @@ paths:
           description: The updated loop details.
 components:
   parameters:
-    ProfileId:
-      name: profile_id
+    LoopId:
+      name: loop_id
       in: path
       required: true
       schema:
         type: integer
-    LoopId:
-      name: loop_id
+    ProfileId:
+      name: profile_id
       in: path
       required: true
       schema:

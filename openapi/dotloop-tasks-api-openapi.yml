@@ -78,12 +78,6 @@ paths:
           description: The task item.
 components:
   parameters:
-    ProfileId:
-      name: profile_id
-      in: path
-      required: true
-      schema:
-        type: integer
     TaskListId:
       name: task_list_id
       in: path
@@ -92,6 +86,12 @@ components:
         type: integer
     LoopId:
       name: loop_id
+      in: path
+      required: true
+      schema:
+        type: integer
+    ProfileId:
+      name: profile_id
       in: path
       required: true
       schema:
