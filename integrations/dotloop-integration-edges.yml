@@ -1,4 +1,4 @@
-generated: '2026-10-13'
+generated: '2026-10-20'
 method: searched
 source:
 - https://zapier.com/apps/dotloop/integrations
@@ -24,336 +24,6 @@ marketplace_apps:
     label: Create Loop
   searches: []
 edges:
-- partner_name: Follow Up Boss
-  partner: follow-up-boss
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/follow-up-boss
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: http://www.followupboss.com/
-- partner_name: HubSpot
-  partner: hubspot
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/hubspot
-  direction: third-party
-  category: Marketing Automation
-  partner_url: http://www.hubspot.com/
-- partner_name: Google Drive
-  partner: google-drive
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/google-drive
-  direction: third-party
-  category: File Management & Storage
-  partner_url: https://www.google.com/drive/
-- partner_name: zipForm Plus
-  partner: null
-  partner_match: null
-  partner_candidate: zapier
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/zipform-plus
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://zapier.com/www.ziplogix.com
-- partner_name: Slack
-  partner: slack
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/slack
-  direction: third-party
-  category: Team Chat
-  partner_url: https://slack.com/
-- partner_name: Google Forms
-  partner: google-forms
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/google-forms
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: http://google.com/
-- partner_name: Constant Contact
-  partner: constant-contact
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/constant-contact
-  direction: third-party
-  category: Email Newsletters
-  partner_url: http://www.constantcontact.com/signup.jsp?pn=zapier
-- partner_name: Google Calendar
-  partner: google-calendar
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/google-calendar
-  direction: third-party
-  category: Calendar
-  partner_url: https://calendar.google.com/
-- partner_name: Jotform
-  partner: jotform
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/jotform
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: http://www.jotform.com/
-- partner_name: kvCORE
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/kvcore
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://www.insiderealestate.com/
-- partner_name: Docusign
-  partner: docusign
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/docusign
-  direction: third-party
-  category: AI Document Extraction
-  partner_url: https://go.docusign.com/trial/us-goog-trynow-display-zapier/
-- partner_name: AFrame
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/aframesoftware
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://www.aframesoftware.com/
-- partner_name: Google Sheets
-  partner: google-sheets
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/google-sheets
-  direction: third-party
-  category: Google
-  partner_url: http://sheets.google.com/
-- partner_name: Trello
-  partner: trello
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/trello
-  direction: third-party
-  category: Project Management
-  partner_url: https://trello.com/
-- partner_name: Pipedrive
-  partner: pipedrive
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/pipedrive
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://pipedrive.com/
-- partner_name: Notion
-  partner: notion
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/notion
-  direction: third-party
-  category: Task Management
-  partner_url: https://www.notion.so/
-- partner_name: ClickUp
-  partner: clickup
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/clickup
-  direction: third-party
-  category: Project Management
-  partner_url: https://clickup.com/zapier
-- partner_name: Airtable
-  partner: airtable
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/airtable
-  direction: third-party
-  category: Databases
-  partner_url: https://airtable.com/
-- partner_name: Paperless Pipeline
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/paperless-pipeline
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://www.paperlesspipeline.com/
-- partner_name: Mailchimp
-  partner: mailchimp
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/mailchimp
-  direction: third-party
-  category: Marketing Automation
-  partner_url: https://mailchimp.com/
-- partner_name: Top Producer
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/top-producer
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://topproducer.com/
-- partner_name: Copper
-  partner: copper
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/copper
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://copper.com/?utm_source=zapier&utm_medium=zapier
-- partner_name: Sierra Interactive
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/sierra-interactive
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://www.sierrainteractive.com/
-- partner_name: Google Contacts
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/google-contacts
-  direction: third-party
-  category: Contact Management
-  partner_url: https://www.google.com/contacts/
-- partner_name: BoomTown
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/boomtown
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: http://www.boomtownroi.com/
-- partner_name: Microsoft Outlook
-  partner: microsoft-outlook
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/microsoft-outlook
-  direction: third-party
-  category: Calendar
-  partner_url: https://outlook.live.com/
-- partner_name: Brivity
-  partner: null
-  partner_match: null
-  partner_candidate: zapier
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/brivity
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://zapier.com/www.brivity.com
-- partner_name: Nekst
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/nekst
-  direction: third-party
-  category: Task Management
-  partner_url: https://nekst.com/
-- partner_name: ActiveCampaign
-  partner: activecampaign
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/activecampaign
-  direction: third-party
-  category: Marketing Automation
-  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
-- partner_name: Wise Agent CRM
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/dotloop/integrations/wise-agent-crm
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://www.wiseagent.com/
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -379,6 +49,366 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Follow Up Boss
+  partner: follow-up-boss
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/follow-up-boss
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: http://www.followupboss.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Google Drive
+  partner: google-drive
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/google-drive
+  direction: third-party
+  category: File Management & Storage
+  partner_url: https://www.google.com/drive/
+- partner_name: zipForm Plus
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/zipform-plus
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://zapier.com/www.ziplogix.com
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Google Forms
+  partner: google-forms
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/google-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: Constant Contact
+  partner: constant-contact
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/constant-contact
+  direction: third-party
+  category: Email Newsletters
+  partner_url: http://www.constantcontact.com/signup.jsp?pn=zapier
+- partner_name: Jotform
+  partner: jotform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/jotform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://www.jotform.com/
+- partner_name: Google Calendar
+  partner: google-calendar
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/google-calendar
+  direction: third-party
+  category: Calendar
+  partner_url: https://calendar.google.com/
+- partner_name: kvCORE
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/kvcore
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.insiderealestate.com/
+- partner_name: Docusign
+  partner: docusign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/docusign
+  direction: third-party
+  category: AI Document Extraction
+  partner_url: https://go.docusign.com/trial/us-goog-trynow-display-zapier/
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: AFrame
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/aframesoftware
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.aframesoftware.com/
+- partner_name: Trello
+  partner: trello
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/trello
+  direction: third-party
+  category: Project Management
+  partner_url: https://trello.com/
+- partner_name: Pipedrive
+  partner: pipedrive
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/pipedrive
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://pipedrive.com/
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
+- partner_name: ClickUp
+  partner: clickup
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/clickup
+  direction: third-party
+  category: Project Management
+  partner_url: https://clickup.com/zapier
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Paperless Pipeline
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/paperless-pipeline
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.paperlesspipeline.com/
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: Top Producer
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/top-producer
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://topproducer.com/
+- partner_name: Copper
+  partner: copper
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/copper
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://copper.com/?utm_source=zapier&utm_medium=zapier
+- partner_name: Sierra Interactive
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/sierra-interactive
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.sierrainteractive.com/
+- partner_name: Google Contacts
+  partner: google
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/google-contacts
+  direction: third-party
+  category: Contact Management
+  partner_url: https://www.google.com/contacts/
+- partner_name: BoomTown
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/boomtown
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: http://www.boomtownroi.com/
+- partner_name: Microsoft Outlook
+  partner: microsoft-outlook
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/microsoft-outlook
+  direction: third-party
+  category: Calendar
+  partner_url: https://outlook.live.com/
+- partner_name: Brivity
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/brivity
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://zapier.com/www.brivity.com
+- partner_name: Nekst
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/nekst
+  direction: third-party
+  category: Task Management
+  partner_url: https://nekst.com/
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: Wise Agent CRM
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/dotloop/integrations/wise-agent-crm
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.wiseagent.com/
 templates:
 - title: Create Google Drive folders from new Dotloop loops
   url: https://zapier.com/apps/dotloop/integrations/google-drive/50654/create-google-drive-folders-from-new-dotloop-loops
