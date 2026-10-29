@@ -1,4 +1,4 @@
-# dotloop (dotloop)
+# dotloop
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,103 +64,148 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-dotloop is a real estate transaction management platform (owned by Zillow Group) that lets agents, teams, and brokerages create and manage transactions - called "loops" - end to end, including documents, e-signatures, tasks, participants, and compliance workflows. The **dotloop Public API v2** is a documented, OAuth2-secured JSON REST API at `https://api-gateway.dotloop.com/public/v2` that exposes accounts, profiles, loops and loop details, folders, documents, participants, tasks, activities, contacts, loop templates, and webhook subscriptions, plus a Loop-It facade for one-call loop creation.
+dotloop is a real estate transaction management platform (owned by Zillow Group) that lets agents, teams, and brokerages create and manage transactions - called "loops" - end to end, including documents, e-signatures, tasks, participants, and compliance workflows. The dotloop Public API v2 is a documented, OAuth2-secured JSON REST API at https://api-gateway.dotloop.com/public/v2 that exposes accounts, profiles, loops and loop details, folders, documents, participants, tasks, activities, contacts, loop templates, and webhook subscriptions, plus a Loop-It facade for one-call loop creation.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/dotloop/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/dotloop/refs/heads/main/apis.yml)
+**Areas:** Real Estate · Transaction Management · Loops · Documents · E-Signature · Zillow Group
 
-## Tags
+## dotloop on APIs.io
 
-- Real Estate
-- Transaction Management
-- Loops
-- Documents
-- E-Signature
-- Zillow Group
+Everything profiled for dotloop is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/dotloop/](https://apis.io/providers/dotloop/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (13)
 
-- **Created:** 2026-07-04
-- **Modified:** 2026-07-04
+- [dotloop Account API](https://apis.io/apis/dotloop/dotloop-account-api/) — The authenticated dotloop account.
+- [dotloop Activities API](https://apis.io/apis/dotloop/dotloop-activities-api/) — Read-only loop activity feed.
+- [dotloop Contacts API](https://apis.io/apis/dotloop/dotloop-contacts-api/) — The authenticated user's contacts (address book).
+- [dotloop Documents API](https://apis.io/apis/dotloop/dotloop-documents-api/) — Documents within a loop folder.
+- [dotloop Folders API](https://apis.io/apis/dotloop/dotloop-folders-api/) — Folders that organize documents within a loop.
+- [dotloop Loop Details API](https://apis.io/apis/dotloop/dotloop-loop-details-api/) — Structured detail fields of a loop.
+- [dotloop Loop It API](https://apis.io/apis/dotloop/dotloop-loop-it-api/) — Single-call loop creation facade.
+- [dotloop Loop Templates API](https://apis.io/apis/dotloop/dotloop-loop-templates-api/) — Reusable transaction blueprints under a profile.
+- [dotloop Loops API](https://apis.io/apis/dotloop/dotloop-loops-api/) — Loops (real estate transactions).
+- [dotloop Participants API](https://apis.io/apis/dotloop/dotloop-participants-api/) — Parties to a loop.
+- [dotloop Profiles API](https://apis.io/apis/dotloop/dotloop-profiles-api/) — Individual, team, and brokerage profiles that scope loops.
+- [dotloop Tasks API](https://apis.io/apis/dotloop/dotloop-tasks-api/) — Task lists and task items on a loop.
+- [dotloop Webhooks API](https://apis.io/apis/dotloop/dotloop-webhooks-api/) — Webhook subscriptions and delivered events.
 
-## Authentication
+### Published properties
 
-The dotloop Public API v2 uses OAuth 2.0. Applications direct users to `https://auth.dotloop.com/oauth/authorize`, exchange the code at `https://auth.dotloop.com/oauth/token`, and call the API with a short-lived (typically 12-hour) Bearer access token. Access is currently restricted to `INDIVIDUAL` profiles.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### dotloop Account API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Retrieve the authenticated dotloop account, including the individual's name, email, and default profile.
+- [Dotloop Agentic Access](https://apis.io/agentic-access/dotloop/dotloop-agentic-access/)
 
-- **Base URL:** `https://api-gateway.dotloop.com/public/v2`
-- **Documentation:** [https://dotloop.github.io/public-api/](https://dotloop.github.io/public-api/)
+#### Collections (14)
 
-### dotloop Profiles API
+Postman and Open Collection request collections.
 
-List, retrieve, create, and update dotloop profiles - the individual, team, or brokerage contexts under which loops are organized.
+- [dotloop Public API v2](https://apis.io/collections/dotloop/open-dotloop/)
+- [dotloop Public API v2 Account API](https://apis.io/collections/dotloop/open-dotloop-account-api/)
+- [dotloop Public API v2 Account Activities API](https://apis.io/collections/dotloop/open-dotloop-activities-api/)
+- [dotloop Public API v2 Account Contacts API](https://apis.io/collections/dotloop/open-dotloop-contacts-api/)
+- [dotloop Public API v2 Account Documents API](https://apis.io/collections/dotloop/open-dotloop-documents-api/)
+- [dotloop Public API v2 Account Folders API](https://apis.io/collections/dotloop/open-dotloop-folders-api/)
+- [dotloop Public API v2 Account Loop Details API](https://apis.io/collections/dotloop/open-dotloop-loop-details-api/)
+- [dotloop Public API v2 Account Loop It API](https://apis.io/collections/dotloop/open-dotloop-loop-it-api/)
+- [dotloop Public API v2 Account Loop Templates API](https://apis.io/collections/dotloop/open-dotloop-loop-templates-api/)
+- [dotloop Public API v2 Account Loops API](https://apis.io/collections/dotloop/open-dotloop-loops-api/)
+- [dotloop Public API v2 Account Participants API](https://apis.io/collections/dotloop/open-dotloop-participants-api/)
+- [dotloop Public API v2 Account Profiles API](https://apis.io/collections/dotloop/open-dotloop-profiles-api/)
+- [dotloop Public API v2 Account Tasks API](https://apis.io/collections/dotloop/open-dotloop-tasks-api/)
+- [dotloop Public API v2 Account Webhooks API](https://apis.io/collections/dotloop/open-dotloop-webhooks-api/)
 
-### dotloop Loops API
+#### Security (2)
 
-List, retrieve, create, and update loops (transactions) within a profile, with pagination, filtering, and sorting.
+Authentication, trust centre, and vulnerability disclosure.
 
-### dotloop Loop Details API
+- [Dotloop Authentication](https://apis.io/security/dotloop/dotloop-authentication/)
+- [Dotloop Domain Security](https://apis.io/security/dotloop/dotloop-domain-security/)
 
-Get and update the structured detail fields of a loop - sections such as Property Address, Financials, Contract Dates, Listing Information, and Offer details.
+#### OAuth scopes (1)
 
-### dotloop Loop-It API
+The permissions the API asks for.
 
-A facade endpoint that creates a new loop and populates it in a single call - transaction type and status, participant contact data, property and listing details, and optional form templates via NRDS or MLS Agent IDs.
+- [Dotloop Scopes](https://apis.io/scopes/dotloop/dotloop-scopes/)
 
-### dotloop Folders API
+#### Plans and pricing (1)
 
-List, retrieve, create, and update the folders inside a loop that organize its documents.
+Published plans, tiers and prices.
 
-### dotloop Documents API
+- [Dotloop Plans Pricing](https://apis.io/plans/dotloop/dotloop-plans-pricing/)
 
-List and retrieve documents within a loop folder, and upload new documents via multipart form-data. Documents can be downloaded as PDFs.
+#### Rate limits (1)
 
-### dotloop Participants API
+Published request limits.
 
-List, retrieve, add, update, and remove the participants on a loop - agents, buyers, sellers, and other parties, each with a role and contact details.
+- [Dotloop Rate Limits](https://apis.io/rate-limits/dotloop/dotloop-rate-limits/)
 
-### dotloop Tasks API
+#### FinOps (1)
 
-Read the task lists on a loop and the individual task items within each list - the checklist of steps, due dates, and completion status that drive a transaction's workflow and compliance.
+What the API costs to run, by operation.
 
-### dotloop Activities API
+- [Dotloop Finops](https://apis.io/finops/dotloop/dotloop-finops/)
 
-List the read-only activity feed for a loop - a chronological audit trail of events and actions taken on the transaction.
+## Where to find this API
 
-### dotloop Contacts API
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-Full CRUD over the authenticated user's contacts (address book) - the people an agent works with and can add as loop participants.
-
-### dotloop Loop Templates API
-
-List and retrieve the reusable loop templates defined under a profile - transaction blueprints that predefine folders, documents, and settings.
-
-### dotloop Webhooks API
-
-Manage webhook subscriptions and inspect delivered events. Clients subscribe to loop or contact events; dotloop sends an HTTPS POST to the configured URL when events occur. Events are retained for 90 days.
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/dotloop)
-- [LinkedIn](https://www.linkedin.com/company/dotloop)
 - [Website](https://www.dotloop.com)
 - [Documentation](https://dotloop.github.io/public-api/)
-- [Plans](plans/dotloop-plans-pricing.yml)
-- [Rate Limits](rate-limits/dotloop-rate-limits.yml)
-- [FinOps](finops/dotloop-finops.yml)
+- [Blog](https://www.dotloop.com/blog/)
+- [GitHub](https://github.com/dotloop)
 
-## Rate Limits
+## API Evangelist rating
 
-The API allows each client application up to **100 requests per minute per user**. Exceeding the limit returns HTTP 429. Responses include `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` headers.
+**Kin Score 28.5** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Pricing
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 51.2 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 7.9 |
 
-dotloop is sold as a per-seat SaaS subscription (agent, team, and brokerage plans, billed monthly or annually). The Public API v2 is not separately metered - programmatic access is provisioned to approved partners and integrators on top of a dotloop subscription, with no published per-call fee. See [plans/dotloop-plans-pricing.yml](plans/dotloop-plans-pricing.yml).
+**Agent readiness 22.9** — agent-aware
 
-## Maintainers
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-- **Kin Lane** — kin@apievangelist.com
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/dotloop/](https://apis.io/providers/dotloop/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for dotloop: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/dotloop/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
